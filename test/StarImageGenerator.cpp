@@ -1,0 +1,2 @@
+#include "StarImageGenerator.hpp"
+
