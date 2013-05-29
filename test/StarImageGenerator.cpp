@@ -3,8 +3,13 @@
 RawImage StarImageGenerator::withStars(std::vector<Point> stars)
 {
     RawImage img(width, height, Color::black(), 0);
-    if (stars.empty())
-        return img;
-    view(img)(stars[0].x, stars[0].y) = Color::white();
+    putStarsOnImage(stars, img);
     return img;
+}
+
+void StarImageGenerator::putStarsOnImage(const std::vector<Point>& stars, RawImage& img)
+{
+    auto v = view(img);
+    for (auto s : stars)
+        v(s.x, s.y) = Color::white();
 }

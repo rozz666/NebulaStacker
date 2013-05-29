@@ -3,31 +3,48 @@
 
 struct StarImageGeneratorTest : testing::Test
 {
-    void expectBlackPixelsOnImage(int count, const RawImage& img)
+    RawImage image;
+    
+    void expectBlackPixels(int count)
     {
-        auto v = const_view(img);
+        auto v = const_view(image);
         EXPECT_EQ(count, std::count(v.begin(), v.end(), Color::black()));
     }
 
-    void expectBlackImage(const RawImage& img)
+    void expectBlackImage()
     {
-        expectBlackPixelsOnImage(img.width() * img.height(), img);
+        expectBlackPixels(image.width() * image.height());
+    }
+
+    void expectWhitePixelAt(unsigned x, unsigned y)
+    {
+        EXPECT_EQ(Color::white(), view(image)(x, y))
+            << "expected white pixel at (" << x << ", " << y << ")";
     }
 };
 
 TEST_F(StarImageGeneratorTest, shouldOutputBlackImageWhenGivenNoStars)
 {
-    RawImage img = StarImageGenerator(17, 35).withStars({});
+    image = StarImageGenerator(17, 35).withStars({});
 
-    EXPECT_EQ(17, img.width());
-    EXPECT_EQ(35, img.height());
-    expectBlackImage(img);
+    EXPECT_EQ(17, image.width());
+    EXPECT_EQ(35, image.height());
+    expectBlackImage();
 }
 
 TEST_F(StarImageGeneratorTest, shouldPutWhitePixelForAStarOnABlackBackground)
 {
-    RawImage img = StarImageGenerator(10, 10).withStars({ { 4, 5 } });
+    image = StarImageGenerator(10, 10).withStars({ { 4, 5 } });
 
-    EXPECT_EQ(Color::white(), view(img)(4, 5));
-    expectBlackPixelsOnImage(99, img);
+    expectWhitePixelAt(4, 5);
+    expectBlackPixels(99);
+}
+
+TEST_F(StarImageGeneratorTest, shouldPutWhitePixelForEachStar)
+{
+    image = StarImageGenerator(10, 10).withStars({ { 1, 7 }, { 8, 2 }, { 5, 4 } });
+
+    expectWhitePixelAt(1, 7);
+    expectWhitePixelAt(8, 2);
+    expectWhitePixelAt(5, 4);
 }

@@ -12,6 +12,7 @@ public:
     RawImage withStars(std::vector<Point> stars);
 private:
     unsigned width, height;
+    void putStarsOnImage(const std::vector<Point>& stars, RawImage& img);
 };
 
 #endif // STARIMAGEGENERATOR_HPP
