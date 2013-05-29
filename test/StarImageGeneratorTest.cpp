@@ -3,11 +3,15 @@
 
 struct StarImageGeneratorTest : testing::Test
 {
+    void expectBlackPixelsOnImage(int count, const RawImage& img)
+    {
+        auto v = const_view(img);
+        EXPECT_EQ(count, std::count(v.begin(), v.end(), Color::black()));
+    }
+
     void expectBlackImage(const RawImage& img)
     {
-        auto v = boost::gil::const_view(img);
-        EXPECT_EQ(img.width() * img.height(), std::count(v.begin(), v.end(), RawPixel(0, 0, 0)))
-            << "not all pixels are black";
+        expectBlackPixelsOnImage(img.width() * img.height(), img);
     }
 };
 
@@ -18,4 +22,12 @@ TEST_F(StarImageGeneratorTest, shouldOutputBlackImageWhenGivenNoStars)
     EXPECT_EQ(17, img.width());
     EXPECT_EQ(35, img.height());
     expectBlackImage(img);
+}
+
+TEST_F(StarImageGeneratorTest, shouldPutWhitePixelForAStarOnABlackBackground)
+{
+    RawImage img = StarImageGenerator(10, 10).withStars({ { 4, 5 } });
+
+    EXPECT_EQ(Color::white(), view(img)(4, 5));
+    expectBlackPixelsOnImage(99, img);
 }
