@@ -5,6 +5,7 @@
 #include <boost/gil/typedefs.hpp>
 
 typedef boost::gil::rgb16_image_t RawImage;
+typedef RawImage::value_type RawPixel;
 typedef std::vector<RawImage> RawImages;
 
 #endif // IMAGES_HPP

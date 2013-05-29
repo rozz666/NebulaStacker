@@ -7,8 +7,11 @@
 class StarImageGenerator
 {
 public:
-    StarImageGenerator(unsigned width, unsigned height) {}
-    RawImage withStars(std::vector<Point> stars) { return RawImage(); }
+    StarImageGenerator(unsigned width, unsigned height)
+        : width(width), height(height) {}
+    RawImage withStars(std::vector<Point> stars);
+private:
+    unsigned width, height;
 };
 
 #endif // STARIMAGEGENERATOR_HPP
