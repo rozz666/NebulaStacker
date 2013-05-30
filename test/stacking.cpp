@@ -16,7 +16,7 @@ struct ModuleTest : testing::Test
 
     ModuleTest() : genImage(128, 128)
     {
-        ONE_LIGHT_FRAME = { genImage.withStars({ { 3, 7 }, { 102, 30 }, { 22, 11 } }) };
+        ONE_LIGHT_FRAME = { genImage.withStars({ { 3, 7 }, { 102, 30 }, { 22, 11 } }).build() };
         ONE_LIGHT_FRAME_LIST = { "light_frame_0.tif" };
         OUTPUT_IMAGE = "output.tif";
     }
@@ -25,7 +25,8 @@ struct ModuleTest : testing::Test
     {
         return genImage
             .withBackgroundLuminance(luminance)
-            .withStars({ { 10, 10 }, { 10, 118 }, { 118, 10 }, { 118, 118 } });
+            .withStars({ { 10, 10 }, { 10, 118 }, { 118, 10 }, { 118, 118 } })
+            .build();
     }
 };
 

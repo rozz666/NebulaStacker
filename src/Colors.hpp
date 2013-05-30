@@ -9,6 +9,7 @@ namespace Color
 
 inline RawPixel black() { return RawPixel(0, 0, 0); }
 inline RawPixel white() { return RawPixel(65535, 65535, 65535); }
+inline RawPixel luminance(boost::gil::channel_type<RawPixel>::type value) { return RawPixel(value, value, value); }
 
 };
 

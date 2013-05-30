@@ -1,13 +1,12 @@
 #include "StarImageGenerator.hpp"
 
-RawImage StarImageGenerator::withStars(std::vector<Point> stars)
+StarImageGenerator& StarImageGenerator::withStars(Points stars)
 {
-    RawImage img(width, height, Color::black(), 0);
-    putStarsOnImage(stars, img);
-    return img;
+    this->stars = stars;
+    return *this;
 }
 
-void StarImageGenerator::putStarsOnImage(const std::vector<Point>& stars, RawImage& img)
+void StarImageGenerator::putStarsOnImage(RawImage& img) const
 {
     auto v = view(img);
     for (auto s : stars)
@@ -16,5 +15,13 @@ void StarImageGenerator::putStarsOnImage(const std::vector<Point>& stars, RawIma
 
 StarImageGenerator& StarImageGenerator::withBackgroundLuminance(unsigned luminance)
 {
+    backgroundColor = Color::luminance(luminance);
     return *this;
+}
+
+RawImage StarImageGenerator::build() const
+{
+    RawImage img(width, height, backgroundColor, 0);
+    putStarsOnImage(img);
+    return img;
 }
