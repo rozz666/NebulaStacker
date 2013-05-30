@@ -8,7 +8,7 @@
 class FrameFiles
 {
 public:
-    void writeFrames(RawImages, FileNames) { }
+    void writeFrames(RawImages, Strings) { }
     void expectIdenticalImages(RawImage, std::string) { }
 };
 

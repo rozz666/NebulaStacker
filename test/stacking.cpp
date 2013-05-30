@@ -8,7 +8,7 @@ struct ModuleTest : testing::Test
 {
     ApplicationFixture application;
     FrameFiles frameFiles;
-    FileNames ONE_LIGHT_FRAME_LIST;
+    Strings ONE_LIGHT_FRAME_LIST;
     StarImageGenerator genImage;
     std::vector<RawImage> ONE_LIGHT_FRAME;
     std::string OUTPUT_IMAGE;

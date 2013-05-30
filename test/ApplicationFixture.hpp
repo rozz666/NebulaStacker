@@ -3,12 +3,12 @@
 #include <vector>
 #include <string>
 
-typedef std::vector<std::string> FileNames;
+typedef std::vector<std::string> Strings;
 
 class ApplicationFixture
 {
 public:
-    void stack(FileNames, std::string) { }
+    void stack(Strings, std::string) { }
 };
 
 #endif // APPLICATIONFIXTURE_HPP
