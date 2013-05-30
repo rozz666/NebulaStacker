@@ -13,3 +13,8 @@ void StarImageGenerator::putStarsOnImage(const std::vector<Point>& stars, RawIma
     for (auto s : stars)
         v(s.x, s.y) = Color::white();
 }
+
+StarImageGenerator& StarImageGenerator::withBackgroundLuminance(unsigned luminance)
+{
+    return *this;
+}
