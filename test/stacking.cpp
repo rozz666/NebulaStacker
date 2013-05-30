@@ -2,7 +2,6 @@
 #include "ApplicationFixture.hpp"
 #include "FrameFiles.hpp"
 #include "StarImageGenerator.hpp"
-#include <boost/gil/image.hpp>
 
 struct ModuleTest : testing::Test
 {
@@ -25,5 +24,5 @@ TEST_F(ModuleTest, stack_one_frame)
 {
     frameFiles.writeFrames(ONE_LIGHT_FRAME, ONE_LIGHT_FRAME_LIST);
     application.stack(ONE_LIGHT_FRAME_LIST, OUTPUT_IMAGE);
-    frameFiles.expectIdenticalImages(ONE_LIGHT_FRAME[0], OUTPUT_IMAGE);
+    frameFiles.expectIdenticalImages(ONE_LIGHT_FRAME_LIST[0], OUTPUT_IMAGE);
 }
