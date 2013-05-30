@@ -1,6 +1,6 @@
 #include "FrameFiles.hpp"
-#include <boost/gil/extension/io/tiff_dynamic_io.hpp>
 #include <gtest/gtest.h>
+#include <ImageIO.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/range.hpp>
 
@@ -8,34 +8,34 @@ void FrameFiles::writeFrames(RawImages frames, Strings frameFilenames)
 {
     for (std::size_t i = 0; i != frames.size(); ++i)
     {
-        boost::gil::tiff_write_view(frameFilenames[i], const_view(frames[i]));
+        writeTiffImage(frameFilenames[i], frames[i]);
         filesToRemove.add(frameFilenames[i]);
     }
 }
 void FrameFiles::expectIdenticalImages(std::string expectedFilename, std::string actualFilename)
 {
-    RawImage expected, actual;
-    boost::gil::tiff_read_image(expectedFilename, expected);
-    boost::gil::tiff_read_image(actualFilename, actual);
+    auto expected = readTiffImage(expectedFilename);
+    auto actual = readTiffImage(actualFilename);
     ASSERT_TRUE(expected == actual) << actualFilename << " not identical to " << expectedFilename;
 }
 Strings FrameFiles::writeFrames(RawImages frames)
 {
     Strings filenames;
-    for (std::size_t i = 0; i != frames.size(); ++i)
-        filenames.push_back(writeInputFrame(frames[i], i));
+    for (const auto& frame : frames)
+        filenames.push_back(writeInputFrame(frame));
     return filenames;
 }
 
-std::string FrameFiles::genInputFileName(unsigned int index)
+std::string FrameFiles::genInputFileName()
 {
-    return "input" + boost::lexical_cast<std::string>(index) + ".tif";
+    fileIndex++;
+    return "input" + boost::lexical_cast<std::string>(fileIndex) + ".tif";
 }
 
-std::string FrameFiles::writeInputFrame(const RawImage& frame, unsigned int index)
+std::string FrameFiles::writeInputFrame(const RawImage& frame)
 {
-    auto filename = genInputFileName(index);
-    boost::gil::tiff_write_view(filename, const_view(frame));
+    auto filename = genInputFileName();
+    writeTiffImage(filename, frame);
     filesToRemove.add(filename);
     return filename;
 }

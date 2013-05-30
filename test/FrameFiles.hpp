@@ -12,9 +12,10 @@ public:
     void expectAverageDifference(RawImage expected, std::string actualFilename, float expectedDifference);
 private:
     AutoremoveFiles filesToRemove;
+    unsigned fileIndex;
 
-    static std::string genInputFileName(unsigned index);
-    std::string writeInputFrame(const RawImage& frame, unsigned index);
+    std::string genInputFileName();
+    std::string writeInputFrame(const RawImage& frame);
 };
 
 #endif // FRAMEFILES_HPP
