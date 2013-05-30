@@ -8,20 +8,21 @@ struct ModuleTest : testing::Test
 {
     ApplicationFixture application;
     FrameFiles frameFiles;
-    Strings ONE_LIGHT_FRAME_LIST;
     StarImageGenerator genImage;
     NoiseFrameGenerator genNoise;
-    std::vector<RawImage> ONE_LIGHT_FRAME;
-    std::string OUTPUT_IMAGE;
+    const std::string OUTPUT_IMAGE;
 
-    ModuleTest() : genImage(128, 128)
+    ModuleTest()
+        : genImage(128, 128), OUTPUT_IMAGE("output.tif") { }
+
+    RawImage frameWithStars()
     {
-        ONE_LIGHT_FRAME = { genImage.withStars({ { 3, 7 }, { 102, 30 }, { 22, 11 } }).build() };
-        ONE_LIGHT_FRAME_LIST = { "light_frame_0.tif" };
-        OUTPUT_IMAGE = "output.tif";
+        return genImage
+            .withStars({ { 3, 7 }, { 102, 30 }, { 22, 11 } })
+            .build();
     }
-
-    RawImage frameWithBackgroundLuminance(unsigned luminance)
+    
+    RawImage frameWithStarsAndBackgroundLuminance(unsigned luminance)
     {
         return genImage
             .withBackgroundLuminance(luminance)
@@ -32,14 +33,15 @@ struct ModuleTest : testing::Test
 
 TEST_F(ModuleTest, stack_one_frame)
 {
-    frameFiles.writeFrames(ONE_LIGHT_FRAME, ONE_LIGHT_FRAME_LIST);
+    RawImages ONE_LIGHT_FRAME = { frameWithStars() };
+    auto ONE_LIGHT_FRAME_LIST = frameFiles.writeFrames(ONE_LIGHT_FRAME);
     application.stack(ONE_LIGHT_FRAME_LIST, OUTPUT_IMAGE);
     frameFiles.expectIdenticalImages(ONE_LIGHT_FRAME_LIST[0], OUTPUT_IMAGE);
 }
 
 TEST_F(ModuleTest, DISABLED_stack_many_frames_to_reduce_noise)
 {
-    auto STANDARD_FRAME = frameWithBackgroundLuminance(16);
+    auto STANDARD_FRAME = frameWithStarsAndBackgroundLuminance(16);
     auto FRAMES_WITH_NOISE = genNoise.frames(32).from(STANDARD_FRAME).withAmplitude(8).build();
     auto FRAMES_WITH_NOISE_LIST = frameFiles.writeFrames(FRAMES_WITH_NOISE);
     
