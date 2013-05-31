@@ -2,11 +2,13 @@
 
 NoiseFrameGenerator& NoiseFrameGenerator::frames(unsigned int count)
 {
+    frameCount = count;
     return *this;
 }
 
 NoiseFrameGenerator& NoiseFrameGenerator::from(RawImage frame)
 {
+    this->frame = frame;
     return *this;
 }
 
@@ -17,5 +19,5 @@ NoiseFrameGenerator& NoiseFrameGenerator::withAmplitude(float amplitude)
 
 RawImages NoiseFrameGenerator::build()
 {
-    return RawImages();
+    return RawImages(frameCount, frame);
 }
