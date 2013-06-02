@@ -13,9 +13,12 @@ public:
     NoiseFrameGenerator& withAmplitude(Accumulator amplitude);
     RawImages build();
 private:
+    boost::mt19937 rng;
     unsigned frameCount;
     RawImage frame;
     Accumulator noiseAmplitude;
+
+    RawImage generateNoisyFrame();
 };
 
 #endif // NOISEFRAMEGENERATOR_HPP

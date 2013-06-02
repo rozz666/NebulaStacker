@@ -99,3 +99,12 @@ TEST_F(NoiseFrameGeneratorTest, shouldNotOverflowChannels)
     auto frame = generator.from(img).withAmplitude(AMPLITUDE).build()[0];
     assertChannelsBetween(frame, Color::white()[0] - AMPLITUDE, Color::white()[0]);
 }
+
+TEST_F(NoiseFrameGeneratorTest, shouldGenerateDifferentFrames)
+{
+    auto frames1 = generator.from(img).frames(2).withAmplitude(AMPLITUDE).build();
+    auto frames2 = generator.frames(1).build();
+    ASSERT_TRUE(frames1[0] != frames1[1]);
+    ASSERT_TRUE(frames1[0] != frames2[0]);
+    ASSERT_TRUE(frames1[1] != frames2[0]);
+}

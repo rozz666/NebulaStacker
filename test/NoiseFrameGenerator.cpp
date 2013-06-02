@@ -28,9 +28,8 @@ RawChannel addSat(RawChannel ch, Accumulator value)
             Accumulator(ch) + value));
 }
 
-RawImages NoiseFrameGenerator::build()
+RawImage NoiseFrameGenerator::generateNoisyFrame()
 {
-    boost::mt19937 rng;
     boost::uniform_int<Accumulator> dist(-noiseAmplitude, noiseAmplitude);
     RawImage noisyFrame(frame.dimensions());
     transform_pixels(const_view(frame), view(noisyFrame), [&dist, &rng](RawPixel p)
@@ -42,5 +41,14 @@ RawImages NoiseFrameGenerator::build()
         });
         return out;
     });
-    return RawImages(frameCount, noisyFrame);
+    return noisyFrame;
+}
+
+RawImages NoiseFrameGenerator::build()
+{
+    RawImages frames;
+    frames.reserve(frameCount);
+    for (unsigned i = 0; i < frameCount; ++i)
+        frames.push_back(generateNoisyFrame());
+    return frames;
 }
