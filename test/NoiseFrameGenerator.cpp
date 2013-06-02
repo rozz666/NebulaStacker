@@ -32,6 +32,7 @@ RawImage NoiseFrameGenerator::generateNoisyFrame()
 {
     boost::uniform_int<Accumulator> dist(-noiseAmplitude, noiseAmplitude);
     RawImage noisyFrame(frame.dimensions());
+    auto& rng = this->rng;
     transform_pixels(const_view(frame), view(noisyFrame), [&dist, &rng](RawPixel p)
     {
         RawPixel out = p;
