@@ -3,6 +3,9 @@
 #include <boost/gil/typedefs.hpp>
 
 typedef boost::gil::rgb16_pixel_t RawPixel;
+typedef boost::gil::gray16_pixel_t RawGrayPixel;
+typedef boost::gil::channel_type<RawPixel>::type RawChannel;
+typedef std::int32_t Accumulator;
 
 namespace Color
 {
