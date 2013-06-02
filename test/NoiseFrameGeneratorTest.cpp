@@ -6,10 +6,12 @@ struct NoiseFrameGeneratorTest : testing::Test
     RawImage img;
     NoiseFrameGenerator generator;
     RawChannel LUMINANCE;
+    Accumulator AMPLITUDE;
 
-    NoiseFrameGeneratorTest() : img(32, 32)
+    NoiseFrameGeneratorTest() : img(16, 16)
     {
         LUMINANCE = 64;
+        AMPLITUDE = 6;
         fill_pixels(view(img), Color::luminance(LUMINANCE));
     }
 
@@ -20,32 +22,45 @@ struct NoiseFrameGeneratorTest : testing::Test
         return sum;
     }
     
-    static float channelVariance(RawPixel p, float mean)
+    static double channelVariance(RawPixel p, double mean)
     {
-        float s = 0;
+        double s = 0;
         static_for_each(p, [&s, mean](RawChannel ch) { s += (ch - mean) * (ch - mean); });
         return s / boost::gil::num_channels<RawPixel>::value;
     }
 
-    RawChannel averageLuminance(const RawImage& frame)
+    double averageLuminance(const RawImage& frame)
     {
         auto v = const_view(frame);
-        Accumulator sum = std::accumulate(v.begin(), v.end(), Accumulator(0), [&](Accumulator val, RawPixel p)
+        auto sum = std::accumulate(v.begin(), v.end(), double(0), [&](Accumulator val, RawPixel p)
         {
             return val + channelSum(p);
         });
         return sum / (frame.width() * frame.height() * boost::gil::num_channels<RawPixel>::value);
     }
 
-    float variance(const RawImage& frame)
+    double variance(const RawImage& frame)
     {
-        float mean = averageLuminance(frame);
+        auto mean = averageLuminance(frame);
         auto v = const_view(frame);
-        float sum = std::accumulate(v.begin(), v.end(), float(0), [&](float val, RawPixel p)
+        auto sum = std::accumulate(v.begin(), v.end(), double(0), [&](double val, RawPixel p)
         {
             return val + channelVariance(p, mean);
         });
         return sum / (frame.width() * frame.height());
+    }
+
+    void assertChannelsBetween(RawImage& frame, RawChannel lo, RawChannel hi)
+    {
+        //auto v = const_view(frame);
+        for (auto p : const_view(frame))
+        {
+            static_for_each(p, [=](RawChannel ch)
+            {
+                ASSERT_GE(ch, lo);
+                ASSERT_LE(ch, hi);
+            });
+        }
     }
 };
 
@@ -58,16 +73,29 @@ TEST_F(NoiseFrameGeneratorTest, shouldGenerateGivenNumberOfFrames)
 
 TEST_F(NoiseFrameGeneratorTest, shouldAddNoNoiseWhenAmplitudeIsZero)
 {
-    auto frames = generator.from(img).frames(1).withAmplitude(0).build();
+    auto frames = generator.from(img).withAmplitude(0).build();
     ASSERT_TRUE(frames[0] == img);
 }
 
 TEST_F(NoiseFrameGeneratorTest, shouldAddUniformNoiseWithGivenAmplitude)
 {
-    Accumulator AMPLITUDE = 6;
-    auto frame = generator.from(img).frames(1).withAmplitude(6).build()[0];
+    auto frame = generator.from(img).withAmplitude(AMPLITUDE).build()[0];
     ASSERT_NEAR(averageLuminance(frame), LUMINANCE, 1);
-    float NUM_VALUES = AMPLITUDE * 2 + 1;
-    float VARIANCE = (NUM_VALUES * NUM_VALUES + 1) / 12;
+    double NUM_VALUES = AMPLITUDE * 2 + 1;
+    double VARIANCE = (NUM_VALUES * NUM_VALUES - 1) / 12;
     ASSERT_NEAR(variance(frame), VARIANCE, 1) << "should be discrete uniform distribution";
+}
+
+TEST_F(NoiseFrameGeneratorTest, shouldNotUnderflowChannels)
+{
+    fill_pixels(view(img), Color::black());
+    auto frame = generator.from(img).withAmplitude(AMPLITUDE).build()[0];
+    assertChannelsBetween(frame, Color::black()[0], Color::black()[0] + AMPLITUDE);
+}
+
+TEST_F(NoiseFrameGeneratorTest, shouldNotOverflowChannels)
+{
+    fill_pixels(view(img), Color::white());
+    auto frame = generator.from(img).withAmplitude(AMPLITUDE).build()[0];
+    assertChannelsBetween(frame, Color::white()[0] - AMPLITUDE, Color::white()[0]);
 }
