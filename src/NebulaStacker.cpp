@@ -6,7 +6,8 @@
 
 #include <iostream>
 
-NebulaStacker::NebulaStacker(ImageReader& imageReader) : imageReader(imageReader)
+NebulaStacker::NebulaStacker(ImageReader& imageReader, ImageWriter& imageWriter)
+    : imageReader(imageReader), imageWriter(imageWriter)
 {
 }
 
@@ -30,5 +31,5 @@ void NebulaStacker::stack(const std::string& outputFilename)
     }
     RawImage output(accumulator.dimensions());
     boost::gil::view_divides_scalar<AccumPixel>(const_view(accumulator), lightFrames.size(), view(output));
-    writeTiffImage(outputFilename, output);
+    imageWriter.writeImage(outputFilename, output);
 }
