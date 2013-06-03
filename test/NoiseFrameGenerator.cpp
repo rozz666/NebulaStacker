@@ -1,5 +1,4 @@
 #include "NoiseFrameGenerator.hpp"
-#include <boost/random/uniform_int.hpp>
 #include <functional>
 
 NoiseFrameGenerator& NoiseFrameGenerator::frames(unsigned count)
@@ -32,7 +31,7 @@ void addSat(RawChannel& ch, Accumulator value)
 RawPixel NoiseFrameGenerator::addNoise(RawPixel p, const Distribution& dist)
 {
     auto& rng = this->rng;
-    static_for_each(p, [&dist, &rng](RawChannel& ch) { addSat(ch, dist(rng)); });
+    static_for_each(p, [&](RawChannel& ch) { addSat(ch, dist(rng)); });
     return p;
 }
 
@@ -50,7 +49,6 @@ RawImages NoiseFrameGenerator::build()
 {
     RawImages frames;
     frames.reserve(frameCount);
-    for (unsigned i = 0; i < frameCount; ++i)
-        frames.push_back(generateNoisyFrame());
+    std::generate_n(std::back_inserter(frames), frameCount, std::bind(&NoiseFrameGenerator::generateNoisyFrame, this));
     return frames;
 }
