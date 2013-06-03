@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 #include <boost/gil/typedefs.hpp>
 #include <boost/gil/image.hpp>
+#include <stdexcept>
 
 using namespace boost::gil;
 
@@ -62,4 +63,13 @@ TEST_F(for_each_channel_accumulate_test, should_return_initial_value_for_empty_i
     {
         return 10;
     }));
+}
+
+TEST_F(for_each_channel_accumulate_test, should_throw_when_image_dimensions_dont_match)
+{
+    rgb16_image_t img1(1, 2), img2(1, 3), img3(2, 2);
+
+    auto zero = [](channel16_t, channel16_t) { return 0; };
+    ASSERT_THROW(for_each_channel_accumulate(const_view(img1), const_view(img2), 0, zero), std::invalid_argument);
+    ASSERT_THROW(for_each_channel_accumulate(const_view(img1), const_view(img3), 0, zero), std::invalid_argument);
 }

@@ -2,10 +2,14 @@
 #define GILALGORITHM_HPP
 #include <boost/gil/color_base_algorithm.hpp>
 #include <boost/gil/algorithm.hpp>
+#include <stdexcept>
 
 template <typename Result, typename View1, typename View2, typename Op2>
 Result for_each_channel_accumulate(const View1& view1, const View2& view2, Result initial, Op2 op)
 {
+    if (view1.dimensions() != view2.dimensions())
+        throw std::invalid_argument("for_each_channel_accumulate: view dimensions do not match");
+
     typedef typename boost::gil::channel_type<View1>::type channel1_t;
     typedef typename boost::gil::channel_type<View2>::type channel2_t;
 
