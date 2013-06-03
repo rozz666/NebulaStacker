@@ -1,6 +1,10 @@
 #include "NebulaStacker.hpp"
 #include "Images.hpp"
 #include "ImageIO.hpp"
+#include <boost/gil/extension/numeric/pixel_numeric_operations.hpp>
+#include <boost/gil/extension/numeric/algorithm.hpp>
+
+#include <iostream>
 
 void NebulaStacker::setLightFrames(const Strings& lightFrames)
 {
@@ -9,6 +13,18 @@ void NebulaStacker::setLightFrames(const Strings& lightFrames)
 
 void NebulaStacker::stack(const std::string& outputFilename)
 {
-    auto output = readTiffImage(lightFrames[0]);
+    AccumImage accumulator;
+    for (auto frameFile : lightFrames)
+    {
+        auto frame = readTiffImage(frameFile);
+        if (view(accumulator).size() == 0)
+        {
+            accumulator.recreate(frame.dimensions());
+            fill_pixels(view(accumulator), Color::black());
+        }
+        boost::gil::transform_pixels(const_view(frame), const_view(accumulator), view(accumulator), boost::gil::pixel_plus_t<RawPixel, AccumPixel, AccumPixel>());
+    }
+    RawImage output(accumulator.dimensions());
+    boost::gil::view_divides_scalar<AccumPixel>(const_view(accumulator), lightFrames.size(), view(output));
     writeTiffImage(outputFilename, output);
 }

@@ -39,13 +39,13 @@ TEST_F(ModuleTest, stack_one_frame)
     frameFiles.expectIdenticalImages(ONE_LIGHT_FRAME_LIST[0], OUTPUT_IMAGE);
 }
 
-TEST_F(ModuleTest, DISABLED_stack_many_frames_to_reduce_noise)
+TEST_F(ModuleTest, stack_many_frames_to_reduce_noise)
 {
     auto STANDARD_FRAME = frameWithStarsAndBackgroundLuminance(16);
-    auto FRAMES_WITH_NOISE = genNoise.frames(32).from(STANDARD_FRAME).withAmplitude(8).build();
+    auto FRAMES_WITH_NOISE = genNoise.frames(17).from(STANDARD_FRAME).withAmplitude(8).build();
     auto FRAMES_WITH_NOISE_LIST = frameFiles.writeFrames(FRAMES_WITH_NOISE);
     
     application.stack(FRAMES_WITH_NOISE_LIST, OUTPUT_IMAGE);
     
-    frameFiles.expectAverageDifference(STANDARD_FRAME, OUTPUT_IMAGE, 0.5f);
+    frameFiles.expectAverageDifference(STANDARD_FRAME, OUTPUT_IMAGE, 1.0);
 }

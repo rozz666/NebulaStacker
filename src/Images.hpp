@@ -8,4 +8,6 @@
 typedef boost::gil::image<RawPixel> RawImage;
 typedef std::vector<RawImage> RawImages;
 
+typedef boost::gil::image<AccumPixel> AccumImage;
+
 #endif // IMAGES_HPP

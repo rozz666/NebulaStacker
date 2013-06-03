@@ -10,7 +10,7 @@ ExternalProject_Add(
     BUILD_COMMAND make
 )
 
-include_directories("boost_1_53_0" "gmock-1.6.0/fused-src" "src" ${CMAKE_BINARY_DIR}/tiff-4.0.3/include)
+include_directories("boost_1_53_0" "gmock-1.6.0/fused-src" "src" ${CMAKE_BINARY_DIR}/tiff-4.0.3/include "gil_extensions")
 link_directories(${CMAKE_BINARY_DIR}/tiff-4.0.3/lib)
 
 if(CMAKE_COMPILER_IS_GNUCXX)

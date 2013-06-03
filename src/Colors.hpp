@@ -8,6 +8,8 @@ typedef boost::gil::gray16_pixel_t RawGrayPixel;
 typedef boost::gil::channel_type<RawPixel>::type RawChannel;
 typedef boost::int32_t Accumulator;
 
+typedef boost::gil::rgb32s_pixel_t AccumPixel;
+
 namespace Color
 {
 

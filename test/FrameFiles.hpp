@@ -6,6 +6,7 @@
 class FrameFiles
 {
 public:
+    FrameFiles() : fileIndex(1) { }
     void writeFrames(RawImages frames, Strings frameFilenames);
     Strings writeFrames(RawImages frames);
     void expectIdenticalImages(std::string expectedFilename, std::string actualFilename);
