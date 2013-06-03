@@ -23,7 +23,17 @@ add_library(gmock gmock-1.6.0/fused-src/gmock-gtest-all.cc)
 add_library(nebulastackercore src/ImageIO.cpp src/NebulaStacker.cpp)
 
 add_executable(nebulastacker src/main.cpp)
-add_executable(nebulastacker_test test/NoiseFrameGeneratorTest.cpp test/NoiseFrameGenerator.cpp test/AutoremoveFiles.cpp test/StarImageGeneratorTest.cpp test/StarImageGenerator.cpp test/FrameFiles.cpp test/ApplicationFixture.cpp test/main.cpp test/stacking.cpp)
+add_executable(nebulastacker_test
+    test/GilAlgorithmTest.cpp
+    test/NoiseFrameGeneratorTest.cpp
+    test/NoiseFrameGenerator.cpp
+    test/AutoremoveFiles.cpp
+    test/StarImageGeneratorTest.cpp
+    test/StarImageGenerator.cpp
+    test/FrameFiles.cpp
+    test/ApplicationFixture.cpp
+    test/stacking.cpp
+    test/main.cpp)
 
 target_link_libraries(nebulastacker_test nebulastackercore)
 target_link_libraries(nebulastacker_test gmock pthread tiff)
