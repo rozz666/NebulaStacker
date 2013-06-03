@@ -3,17 +3,19 @@
 #include "Strings.hpp"
 #include "ImageReader.hpp"
 #include "ImageWriter.hpp"
+#include "FrameCombinerFactory.hpp"
 #include <boost/shared_ptr.hpp>
 
 class NebulaStacker
 {
 public:
-    NebulaStacker(ImageReader& imageReader, ImageWriter& imageWriter);
+    NebulaStacker(ImageReader& imageReader, ImageWriter& imageWriter, FrameCombinerFactory& frameCombinerFactory);
     void setLightFrames(const Strings& lightFrames);
     void stack(const std::string& outputFilename);
 private:
     ImageReader& imageReader;
     ImageWriter& imageWriter;
+    FrameCombinerFactory& frameCombinerFactory;
     Strings lightFrames;
 };
 
