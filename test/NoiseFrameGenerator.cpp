@@ -1,5 +1,6 @@
 #include "NoiseFrameGenerator.hpp"
 #include <boost/random/uniform_int.hpp>
+#include <functional>
 
 NoiseFrameGenerator& NoiseFrameGenerator::frames(unsigned count)
 {
@@ -19,29 +20,29 @@ NoiseFrameGenerator& NoiseFrameGenerator::withAmplitude(Accumulator amplitude)
     return *this;
 }
 
-RawChannel addSat(RawChannel ch, Accumulator value)
+void addSat(RawChannel& ch, Accumulator value)
 {
-    return std::min<Accumulator>(
+    ch = std::min<Accumulator>(
         std::numeric_limits<RawChannel>::max(),
         std::max<Accumulator>(
             std::numeric_limits<RawChannel>::min(),
             Accumulator(ch) + value));
 }
 
+RawPixel NoiseFrameGenerator::addNoise(RawPixel p, const Distribution& dist)
+{
+    auto& rng = this->rng;
+    static_for_each(p, [&dist, &rng](RawChannel& ch) { addSat(ch, dist(rng)); });
+    return p;
+}
+
+
 RawImage NoiseFrameGenerator::generateNoisyFrame()
 {
+    using std::placeholders::_1;
     boost::uniform_int<Accumulator> dist(-noiseAmplitude, noiseAmplitude);
     RawImage noisyFrame(frame.dimensions());
-    auto& rng = this->rng;
-    transform_pixels(const_view(frame), view(noisyFrame), [&dist, &rng](RawPixel p) -> RawPixel // TODO: extract
-    {
-        RawPixel out = p;
-        static_for_each(out, [&dist, &rng](RawChannel& ch)
-        {
-            ch = addSat(ch, dist(rng));
-        });
-        return out;
-    });
+    transform_pixels(const_view(frame), view(noisyFrame), std::bind(&NoiseFrameGenerator::addNoise, this, _1, dist));
     return noisyFrame;
 }
 
