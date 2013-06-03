@@ -6,6 +6,10 @@
 
 #include <iostream>
 
+NebulaStacker::NebulaStacker(ImageReader& imageReader) : imageReader(imageReader)
+{
+}
+
 void NebulaStacker::setLightFrames(const Strings& lightFrames)
 {
     this->lightFrames = lightFrames;
@@ -16,7 +20,7 @@ void NebulaStacker::stack(const std::string& outputFilename)
     AccumImage accumulator;
     for (auto frameFile : lightFrames)
     {
-        auto frame = readTiffImage(frameFile);
+        auto frame = imageReader.readImage(frameFile);
         if (view(accumulator).size() == 0)
         {
             accumulator.recreate(frame.dimensions());

@@ -20,7 +20,7 @@ else(CMAKE_COMPILER_IS_GNUCXX)
 endif(CMAKE_COMPILER_IS_GNUCXX)
 
 add_library(gmock gmock-1.6.0/fused-src/gmock-gtest-all.cc)
-add_library(nebulastackercore src/ImageIO.cpp src/NebulaStacker.cpp)
+add_library(nebulastackercore src/NebulaStackerFactory.cpp src/TiffImageReader.cpp src/ImageIO.cpp src/NebulaStacker.cpp)
 
 add_executable(nebulastacker src/main.cpp)
 add_executable(nebulastacker_test

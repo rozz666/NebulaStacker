@@ -6,9 +6,10 @@
 class ApplicationFixture
 {
 public:
+    ApplicationFixture();
     void stack(Strings lightFrames, std::string output);
 private:
-    NebulaStacker stacker;
+    NebulaStackerPtr stacker;
     AutoremoveFiles filesToRemove;
 };
 
