@@ -39,3 +39,19 @@ TEST(for_each_channel_accumulate_test, should_call_functor_for_each_pixel_in_par
         return p1 + p2;
     })) << "should call functor for each pixel";
 }
+
+TEST(for_each_channel_accumulate_test, should_include_the_initial_value)
+{
+    rgb16_image_t img1(1, 1), img2(1, 1);
+
+    view(img1)(0, 0) = rgb16_pixel_t(1, 0, 0);
+    view(img2)(0, 0) = rgb16_pixel_t(1, 0, 0);
+
+    typedef boost::gil::channel_type<decltype(img1)>::type channel1_t;
+    typedef boost::gil::channel_type<decltype(img2)>::type channel2_t;
+
+    ASSERT_EQ(2 + 8, for_each_channel_accumulate(const_view(img1), const_view(img2), 8, [&](channel1_t p1, channel2_t p2)
+    {
+        return p1 + p2;
+    }));
+}
