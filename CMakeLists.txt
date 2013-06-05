@@ -24,6 +24,7 @@ add_library(nebulastackercore src/FrameAveragerFactory.cpp src/FrameAverager.cpp
 
 add_executable(nebulastacker src/main.cpp)
 add_executable(nebulastacker_test
+    test/NebulaStackerTest.cpp
     test/FrameAveragerTest.cpp
     test/GilAlgorithmTest.cpp
     test/NoiseFrameGeneratorTest.cpp
