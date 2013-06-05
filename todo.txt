@@ -1,0 +1,16 @@
+* namespaces
+* Qt GUI tests
+* GUI loading frames 
+* GUI saving output
+* GUI frame preview
+* GUI output preview
+* stacking moved point stars
+* stacking rotated point stars
+* stacking deformed surface point stars
+* stacking gradient stars
+* dark frame calibration
+* dark frame stacking
+* bias frame calibration
+* bias frame stacking
+* flat frame calibration
+* flat frame stacking
