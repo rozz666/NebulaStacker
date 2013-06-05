@@ -2,21 +2,18 @@
 #include "TiffImageReader.hpp"
 #include "TiffImageWriter.hpp"
 #include "FrameAveragerFactory.hpp"
-#include <boost/make_shared.hpp>
+#include "makeWithDependencies.hpp"
 
 NebulaStackerPtr NebulaStackerFactory::createNebulaStacker()
 {
-    struct StackerWithDependencies
+    struct Complete
     {
         TiffImageReader imageReader;
         TiffImageWriter imageWriter;
         FrameAveragerFactory frameCombinerFactory;
-        NebulaStacker stacker;
-        StackerWithDependencies()
-            : stacker(imageReader, imageWriter, frameCombinerFactory) { }
+        NebulaStacker stacker{imageReader, imageWriter, frameCombinerFactory};
     };
-    auto withDeps = boost::make_shared<StackerWithDependencies>();
-    return NebulaStackerPtr(withDeps, &withDeps->stacker);
+    return makeWithDependencies(&Complete::stacker);
 }
 
 
