@@ -1,6 +1,5 @@
 #include "FrameFiles.hpp"
 #include <gtest/gtest.h>
-#include <ImageIO.hpp>
 #include <GilAlgorithm.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/range.hpp>

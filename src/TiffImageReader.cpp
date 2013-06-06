@@ -1,9 +1,11 @@
 #include "TiffImageReader.hpp"
-#include "ImageIO.hpp"
+#include <boost/gil/extension/io/tiff_dynamic_io.hpp>
 
 RawImage TiffImageReader::readImage(const std::string& filename)
 {
-    return readTiffImage(filename);
+    RawImage image;
+    boost::gil::tiff_read_image(filename, image);
+    return image;
 }
 
 
