@@ -1,5 +1,6 @@
 project(nebulastacker)
 cmake_minimum_required(VERSION 2.8)
+find_package(Qt4 REQUIRED)
 include(ExternalProject)
 
 ExternalProject_Add(
@@ -10,6 +11,7 @@ ExternalProject_Add(
     BUILD_COMMAND make
 )
 
+include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR})
 include_directories("boost_1_53_0" "gmock-1.6.0/fused-src" "src" ${CMAKE_BINARY_DIR}/tiff-4.0.3/include "gil_extensions")
 link_directories(${CMAKE_BINARY_DIR}/tiff-4.0.3/lib)
 
@@ -19,8 +21,11 @@ else(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++ -Wall -DGTEST_USE_OWN_TR1_TUPLE=1")
 endif(CMAKE_COMPILER_IS_GNUCXX)
 
+qt4_automoc(src/MainWindow.cpp)
+
 add_library(gmock gmock-1.6.0/fused-src/gmock-gtest-all.cc)
 add_library(nebulastackercore src/FrameAveragerFactory.cpp src/FrameAverager.cpp src/TiffImageWriter.cpp src/NebulaStackerFactory.cpp src/TiffImageReader.cpp src/ImageIO.cpp src/NebulaStacker.cpp)
+add_library(nebulastackergui src/guiMain.cpp src/MainWindow.cpp)
 
 add_executable(nebulastacker src/main.cpp)
 add_executable(nebulastacker_test
@@ -39,3 +44,4 @@ add_executable(nebulastacker_test
 
 target_link_libraries(nebulastacker_test nebulastackercore)
 target_link_libraries(nebulastacker_test gmock pthread tiff)
+target_link_libraries(nebulastacker nebulastackergui ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY})

@@ -1,6 +1,6 @@
-#include <iostream>
+#include "guiMain.hpp"
 
 int main(int argc, char **argv)
 {
-    return 0;
+    return guiMain(argc, argv);
 }
