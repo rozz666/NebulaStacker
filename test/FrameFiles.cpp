@@ -9,14 +9,14 @@ void FrameFiles::writeFrames(RawImages frames, Strings frameFilenames)
 {
     for (std::size_t i = 0; i != frames.size(); ++i)
     {
-        writeTiffImage(frameFilenames[i], frames[i]);
+        imageWriter.writeImage(frameFilenames[i], frames[i]);
         filesToRemove.add(frameFilenames[i]);
     }
 }
 void FrameFiles::expectIdenticalImages(std::string expectedFilename, std::string actualFilename)
 {
-    auto expected = readTiffImage(expectedFilename);
-    auto actual = readTiffImage(actualFilename);
+    auto expected = imageReader.readImage(expectedFilename);
+    auto actual = imageReader.readImage(actualFilename);
     ASSERT_TRUE(expected == actual) << actualFilename << " not identical to " << expectedFilename;
 }
 Strings FrameFiles::writeFrames(RawImages frames)
@@ -36,7 +36,7 @@ std::string FrameFiles::genInputFileName()
 std::string FrameFiles::writeInputFrame(const RawImage& frame)
 {
     auto filename = genInputFileName();
-    writeTiffImage(filename, frame);
+    imageWriter.writeImage(filename, frame);
     filesToRemove.add(filename);
     return filename;
 }
@@ -53,7 +53,7 @@ double FrameFiles::averageDifference(const View1& view1, const View2& view2)
 
 void FrameFiles::expectAverageDifference(RawImage expected, std::string actualFilename, double expectedDifference)
 {
-    auto actual = readTiffImage(actualFilename);
+    auto actual = imageReader.readImage(actualFilename);
 
     ASSERT_EQ(expected.dimensions(), actual.dimensions());
     ASSERT_LE(averageDifference(const_view(expected), const_view(actual)), expectedDifference);

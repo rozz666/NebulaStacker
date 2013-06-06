@@ -2,6 +2,8 @@
 #define FRAMEFILES_HPP
 #include "AutoremoveFiles.hpp"
 #include <Images.hpp>
+#include <TiffImageReader.hpp>
+#include <TiffImageWriter.hpp>
 
 class FrameFiles
 {
@@ -13,6 +15,8 @@ public:
     void expectAverageDifference(RawImage expected, std::string actualFilename, double expectedDifference);
 private:
     AutoremoveFiles filesToRemove;
+    TiffImageReader imageReader;
+    TiffImageWriter imageWriter;
     unsigned fileIndex;
 
     template <typename View1, typename View2>
