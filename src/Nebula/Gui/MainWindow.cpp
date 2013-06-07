@@ -1,4 +1,4 @@
-#include <Nebula/MainWindow.hpp>
+#include <Nebula/Gui/MainWindow.hpp>
 #include <QAction>
 #include <QMenuBar>
 

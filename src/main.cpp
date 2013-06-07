@@ -1,4 +1,4 @@
-#include <Nebula/guiMain.hpp>
+#include <Nebula/Gui/guiMain.hpp>
 
 int main(int argc, char **argv)
 {

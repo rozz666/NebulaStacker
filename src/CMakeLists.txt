@@ -6,7 +6,9 @@ add_library(nebulastackercore
     Nebula/TiffImageReader.cpp
     Nebula/NebulaStacker.cpp)
 
-add_library(nebulastackergui Nebula/guiMain.cpp Nebula/MainWindow.cpp)
+add_library(nebulastackergui
+    Nebula/Gui/guiMain.cpp
+    Nebula/Gui/MainWindow.cpp)
 
 add_executable(nebulastacker main.cpp)
 

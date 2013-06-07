@@ -1,4 +1,4 @@
-#include <Nebula/MainWindow.hpp>
+#include <Nebula/Gui/MainWindow.hpp>
 #include <gtest/gtest.h>
 #include <QMenuBar>
 #include <boost/range/algorithm.hpp>
