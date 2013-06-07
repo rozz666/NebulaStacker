@@ -6,6 +6,8 @@
 class MainWindow : public QMainWindow
 {
 Q_OBJECT
+public:
+    MainWindow();
 };
 
 #endif // MAINWINDOW_HPP
