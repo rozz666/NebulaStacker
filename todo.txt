@@ -1,5 +1,4 @@
 * namespaces
-* Qt GUI tests
 * GUI loading frames 
 * GUI saving output
 * GUI frame preview
