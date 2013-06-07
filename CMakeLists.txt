@@ -23,30 +23,16 @@ else(CMAKE_COMPILER_IS_GNUCXX)
 endif(CMAKE_COMPILER_IS_GNUCXX)
 
 add_library(gmock gmock-1.6.0/fused-src/gmock-gtest-all.cc)
-add_library(nebulastackercore src/FrameAveragerFactory.cpp src/FrameAverager.cpp src/TiffImageWriter.cpp src/NebulaStackerFactory.cpp src/TiffImageReader.cpp src/NebulaStacker.cpp)
-add_library(nebulastackergui src/guiMain.cpp src/MainWindow.cpp)
+add_library(nebulastackercore src/Nebula/FrameAveragerFactory.cpp src/Nebula/FrameAverager.cpp src/Nebula/TiffImageWriter.cpp src/Nebula/NebulaStackerFactory.cpp src/Nebula/TiffImageReader.cpp src/Nebula/NebulaStacker.cpp)
+add_library(nebulastackergui src/Nebula/guiMain.cpp src/Nebula/MainWindow.cpp)
 
 add_executable(nebulastacker src/main.cpp)
-add_executable(nebulastacker_test
-    test/MainWindowTest.cpp
-    test/NebulaStackerTest.cpp
-    test/FrameAveragerTest.cpp
-    test/GilAlgorithmTest.cpp
-    test/NoiseFrameGeneratorTest.cpp
-    test/NoiseFrameGenerator.cpp
-    test/AutoremoveFiles.cpp
-    test/StarImageGeneratorTest.cpp
-    test/StarImageGenerator.cpp
-    test/FrameFiles.cpp
-    test/ApplicationFixture.cpp
-    test/stacking.cpp
-    test/main.cpp)
 
 
-target_link_libraries(nebulastacker_test nebulastackercore nebulastackergui gmock pthread tiff)
 target_link_libraries(nebulastacker nebulastackergui)
 
 set_target_properties(nebulastackergui PROPERTIES AUTOMOC TRUE)
 
-qt5_use_modules(nebulastacker_test Widgets Test)
 qt5_use_modules(nebulastackergui Widgets)
+
+add_subdirectory(test)

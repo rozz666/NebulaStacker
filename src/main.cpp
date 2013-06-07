@@ -1,6 +1,6 @@
-#include "guiMain.hpp"
+#include <Nebula/guiMain.hpp>
 
 int main(int argc, char **argv)
 {
-    return guiMain(argc, argv);
+    return Nebula::guiMain(argc, argv);
 }
