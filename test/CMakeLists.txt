@@ -1,3 +1,9 @@
+find_package(Qt5Test)
+
+include_directories(".")
+
+add_library(gmock ${CMAKE_SOURCE_DIR}/gmock-1.6.0/fused-src/gmock-gtest-all.cc)
+
 add_executable(nebulastacker_test
     Nebula/MainWindowTest.cpp
     Nebula/NebulaStackerTest.cpp
