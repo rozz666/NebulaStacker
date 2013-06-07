@@ -1,4 +1,4 @@
-#include <Nebula/NebulaStackerFactory.hpp>
+#include <Nebula/StackerFactory.hpp>
 #include <Nebula/TiffImageReader.hpp>
 #include <Nebula/TiffImageWriter.hpp>
 #include <Nebula/FrameAveragerFactory.hpp>
@@ -7,14 +7,14 @@
 namespace Nebula
 {
 
-NebulaStackerPtr NebulaStackerFactory::createNebulaStacker()
+StackerPtr StackerFactory::createStacker()
 {
     struct Complete
     {
         TiffImageReader imageReader;
         TiffImageWriter imageWriter;
         FrameAveragerFactory frameCombinerFactory;
-        NebulaStacker stacker{imageReader, imageWriter, frameCombinerFactory};
+        Stacker stacker{imageReader, imageWriter, frameCombinerFactory};
     };
     return makeWithDependencies(&Complete::stacker);
 }

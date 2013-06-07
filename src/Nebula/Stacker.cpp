@@ -1,20 +1,20 @@
-#include <Nebula/NebulaStacker.hpp>
+#include <Nebula/Stacker.hpp>
 #include <Nebula/Images.hpp>
 
 namespace Nebula
 {
 
-NebulaStacker::NebulaStacker(ImageReader& imageReader, ImageWriter& imageWriter, FrameCombinerFactory& frameCombinerFactory)
+Stacker::Stacker(ImageReader& imageReader, ImageWriter& imageWriter, FrameCombinerFactory& frameCombinerFactory)
     : imageReader(imageReader), imageWriter(imageWriter), frameCombinerFactory(frameCombinerFactory)
 {
 }
 
-void NebulaStacker::setLightFrames(const Strings& lightFrames)
+void Stacker::setLightFrames(const Strings& lightFrames)
 {
     this->lightFrames = lightFrames;
 }
 
-void NebulaStacker::stack(const std::string& outputFilename)
+void Stacker::stack(const std::string& outputFilename)
 {
     FrameCombinerPtr combiner = frameCombinerFactory.createFrameCombiner();
     for (auto frameFile : lightFrames)

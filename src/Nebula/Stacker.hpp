@@ -9,10 +9,10 @@
 namespace Nebula
 {
 
-class NebulaStacker
+class Stacker
 {
 public:
-    NebulaStacker(ImageReader& imageReader, ImageWriter& imageWriter, FrameCombinerFactory& frameCombinerFactory);
+    Stacker(ImageReader& imageReader, ImageWriter& imageWriter, FrameCombinerFactory& frameCombinerFactory);
     void setLightFrames(const Strings& lightFrames);
     void stack(const std::string& outputFilename);
 private:
@@ -22,7 +22,7 @@ private:
     Strings lightFrames;
 };
 
-typedef boost::shared_ptr<NebulaStacker> NebulaStackerPtr;
+typedef boost::shared_ptr<Stacker> StackerPtr;
 
 }
 

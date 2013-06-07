@@ -1,13 +1,13 @@
 #ifndef NEBULASTACKERFACTORY_HPP
 #define NEBULASTACKERFACTORY_HPP
-#include <Nebula/NebulaStacker.hpp>
+#include <Nebula/Stacker.hpp>
 
 namespace Nebula
 {
 
-struct NebulaStackerFactory
+struct StackerFactory
 {
-    NebulaStackerPtr createNebulaStacker();
+    StackerPtr createStacker();
 };
 
 }

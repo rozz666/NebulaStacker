@@ -2,9 +2,9 @@ add_library(nebulastackercore
     Nebula/FrameAveragerFactory.cpp
     Nebula/FrameAverager.cpp
     Nebula/TiffImageWriter.cpp
-    Nebula/NebulaStackerFactory.cpp
+    Nebula/StackerFactory.cpp
     Nebula/TiffImageReader.cpp
-    Nebula/NebulaStacker.cpp)
+    Nebula/Stacker.cpp)
 
 add_library(nebulastackergui
     Nebula/Gui/guiMain.cpp
