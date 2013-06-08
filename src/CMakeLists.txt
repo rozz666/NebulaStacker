@@ -7,6 +7,7 @@ add_library(nebulastackercore
     Nebula/Stacker.cpp)
 
 add_library(nebulastackergui
+    Nebula/Gui/toStrings.cpp
     Nebula/Gui/guiMain.cpp
     Nebula/Gui/MainWindow.cpp)
 

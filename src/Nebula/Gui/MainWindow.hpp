@@ -18,7 +18,7 @@ private slots:
     void stackFrames();
     
 private:
-    StackerPtr stacker;
+    QStringList frameFiles;
 };
 
 }

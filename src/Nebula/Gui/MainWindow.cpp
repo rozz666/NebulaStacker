@@ -3,11 +3,12 @@
 #include <QMenuBar>
 #include <Nebula/Gui/QFileDialog.hpp>
 #include <Nebula/StackerFactory.hpp>
+#include <Nebula/Gui/toStrings.hpp>
 
 namespace Nebula
 {
 
-MainWindow::MainWindow() : stacker(StackerFactory().createStacker())
+MainWindow::MainWindow()
 {
     setWindowTitle("NebulaStacker");
 
@@ -28,17 +29,14 @@ MainWindow::MainWindow() : stacker(StackerFactory().createStacker())
 
 void MainWindow::openLightFrames()
 {
-    auto files = QFileDialog::getOpenFileNames(this, "Open light frames", "", "16-bit TIFF images (*.tif *.tiff))");
-    Strings list;
-    for (auto f : files)
-        list.push_back(f.toStdString());
-
-    stacker->setLightFrames(list);
+    frameFiles = QFileDialog::getOpenFileNames(this, "Open light frames", "", "16-bit TIFF images (*.tif *.tiff))");
 }
 
 void MainWindow::stackFrames()
 {
+    auto stacker = StackerFactory().createStacker();
     QString outputFile = QFileDialog::getSaveFileName(this, "Save stacked image", "", "16-bit TIFF images (*.tif *.tiff))");
+    stacker->setLightFrames(toStrings(frameFiles));
     stacker->stack(outputFile.toStdString());
 }
 
