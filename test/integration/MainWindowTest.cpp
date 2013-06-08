@@ -1,55 +1,28 @@
-#include <Nebula/Gui/MainWindow.hpp>
 #include <gtest/gtest.h>
-#include <QMenuBar>
-#include <boost/range/algorithm.hpp>
-#include <Nebula/Gui/QFileDialogMock.hpp>
-
-using namespace testing;
+#include <Nebula/Gui/GuiApplicationFixture.hpp>
+#include <Nebula/Gui/EnvironmentFixture.hpp>
 
 namespace Nebula
 {
 
 struct MainWindowTest : testing::Test
 {
-    MainWindow window;
-
-    MainWindowTest()
-    {
-        QFileDialogMock::setUp();
-    }
-
-    ~MainWindowTest()
-    {
-        QFileDialogMock::tearDown();
-    }
-
-    void triggerAction(QString text)
-    {
-        auto actions = window.findChildren<QAction *>();
-        auto action = boost::find_if(actions, [=](QAction *a) { return a->text() == text; });
-        ASSERT_TRUE(action != actions.end()) << "Action [" << text.toStdString() << "] not found";
-        (*action)->trigger();
-    }
-
-    void expectOpenFiles()
-    {
-        EXPECT_CALL(QFileDialogMock::get(), getOpenFileNames(&window, _, _, _, _, _))
-            .WillOnce(Return(QStringList()));
-    }
+    GuiApplicationFixture application;
+    EnvironmentFixture environment;
 };
 
 TEST_F(MainWindowTest, quit)
 {
-    window.show();
-    triggerAction("Quit");
-    ASSERT_FALSE(window.isVisible());
+    application.open();
+    application.triggerAction("Quit");
+    application.assertClosed();
 }
 
 TEST_F(MainWindowTest, add_frames)
 {
-    expectOpenFiles();
+    environment.expectOpenFiles();
 
-    triggerAction("Open light frames...");
+    application.triggerAction("Open light frames...");
 }
 
 }

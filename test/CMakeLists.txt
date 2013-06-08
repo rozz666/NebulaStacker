@@ -13,6 +13,8 @@ add_executable(nebulastacker_test
     helpers/Nebula/StarImageGenerator.cpp
     helpers/Nebula/FrameFiles.cpp
     helpers/Nebula/ApplicationFixture.cpp
+    helpers/Nebula/Gui/GuiApplicationFixture.cpp
+    helpers/Nebula/Gui/EnvironmentFixture.cpp
 
     unit/Nebula/NebulaStackerTest.cpp
     unit/Nebula/FrameAveragerTest.cpp
