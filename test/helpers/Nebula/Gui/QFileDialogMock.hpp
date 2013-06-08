@@ -16,6 +16,7 @@ public:
     static QFileDialogMock& get();
 
     MOCK_METHOD6(getOpenFileNames, QStringList(QWidget*, const QString&, const QString&, const QString&, QString*, Options));
+    MOCK_METHOD6(getSaveFileName, QString(QWidget*, const QString&, const QString&, const QString&, QString*, Options));
 
 private:
 

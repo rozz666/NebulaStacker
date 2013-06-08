@@ -2,6 +2,7 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
+#include <Nebula/Stacker.hpp>
 
 namespace Nebula
 {
@@ -14,6 +15,10 @@ public:
 
 private slots:
     void openLightFrames();
+    void stackFrames();
+    
+private:
+    StackerPtr stacker;
 };
 
 }

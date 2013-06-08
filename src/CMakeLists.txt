@@ -15,7 +15,7 @@ add_library(nebulastackerguidialogs
 
 add_executable(nebulastacker main.cpp)
 
-target_link_libraries(nebulastacker nebulastackergui nebulastackerguidialogs)
+target_link_libraries(nebulastacker nebulastackergui nebulastackercore nebulastackerguidialogs tiff)
 
 set_target_properties(nebulastackergui PROPERTIES AUTOMOC TRUE)
 

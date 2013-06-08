@@ -35,4 +35,15 @@ QStringList QFileDialog::getOpenFileNames(
     return QFileDialogMock::get().getOpenFileNames(parent, caption, dir, filter, selectedFilter, options);
 }
 
+QString QFileDialog::getSaveFileName(
+    QWidget *parent,
+    const QString &caption,
+    const QString &dir,
+    const QString &filter,
+    QString *selectedFilter,
+    Options options)
+{
+    return QFileDialogMock::get().getSaveFileName(parent, caption, dir, filter, selectedFilter, options);
+}
+
 }

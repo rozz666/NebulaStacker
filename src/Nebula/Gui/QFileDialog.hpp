@@ -17,6 +17,14 @@ static QStringList getOpenFileNames(
     QString *selectedFilter = 0,
     Options options = 0);
 
+static QString getSaveFileName(
+    QWidget *parent = 0,
+    const QString &caption = QString(),
+    const QString &dir = QString(),
+    const QString &filter = QString(),
+    QString *selectedFilter = 0,
+    Options options = 0);
+
 };
 
 }
