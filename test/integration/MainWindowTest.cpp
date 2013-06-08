@@ -38,7 +38,7 @@ TEST_F(MainWindowTest, stacking_frames)
 
     environment.expectSaveFile(OUTPUT_FILE);
 
-    application.triggerAction("Stack");
+    application.triggerAction("Stack...");
 
     environment.assertFileExists(OUTPUT_FILE);
 }
