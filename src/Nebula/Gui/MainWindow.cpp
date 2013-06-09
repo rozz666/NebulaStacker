@@ -22,6 +22,7 @@ MainWindow::MainWindow()
 
     lightFrameList = new QListWidget(this);
     lightFrameList->setObjectName("lightFrameList");
+    setCentralWidget(lightFrameList);
 }
 
 void MainWindow::openLightFrames()
