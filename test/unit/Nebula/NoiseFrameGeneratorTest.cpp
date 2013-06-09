@@ -1,22 +1,24 @@
 #include <numeric>
 #include <gtest/gtest.h>
 #include <Nebula/NoiseFrameGenerator.hpp>
+#include <Nebula/RawImagePrinter.hpp>
 
 namespace Nebula
 {
 
 struct NoiseFrameGeneratorTest : testing::Test
 {
-    RawImage img;
+    RawImage img, img2;
     NoiseFrameGenerator generator;
     RawChannel LUMINANCE;
     Accumulator AMPLITUDE;
 
-    NoiseFrameGeneratorTest() : img(16, 16)
+    NoiseFrameGeneratorTest() : img(16, 16), img2(32, 24)
     {
         LUMINANCE = 64;
         AMPLITUDE = 6;
         fill_pixels(view(img), Color::luminance(LUMINANCE));
+        fill_pixels(view(img2), Color::luminance(LUMINANCE));
 
         generator.from(img).withAmplitude(AMPLITUDE);
     }
@@ -112,6 +114,16 @@ TEST_F(NoiseFrameGeneratorTest, shouldGenerateDifferentFrames)
     ASSERT_TRUE(frames1[0] != frames1[1]);
     ASSERT_TRUE(frames1[0] != frames2[0]);
     ASSERT_TRUE(frames1[1] != frames2[0]);
+}
+
+TEST_F(NoiseFrameGeneratorTest, shouldGenerateGivenNumberOfNoiseFramesForEachFrame)
+{
+    auto frames = generator.frames(3).from({ img, img2 }).build();
+    ASSERT_EQ(6u, frames.size());
+    ASSERT_EQ(img.dimensions(), frames[0].dimensions());
+    ASSERT_EQ(img.dimensions(), frames[2].dimensions());
+    ASSERT_EQ(img2.dimensions(), frames[3].dimensions());
+    ASSERT_EQ(img2.dimensions(), frames[5].dimensions());
 }
 
 }

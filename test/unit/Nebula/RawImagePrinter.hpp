@@ -1,12 +1,13 @@
 #ifndef NEBULA_RAWIMAGEPRINTER_HPP
 #define NEBULA_RAWIMAGEPRINTER_HPP
+#include <Nebula/Images.hpp>
 
 namespace boost
 {
 namespace gil
 {
 
-void PrintTo(const Nebula::RawImage& img, ::std::ostream* os)
+inline void PrintTo(const Nebula::RawImage& img, ::std::ostream* os)
 {
     *os << "RawImage[ " << img.width() << " x " << img.height() << " :";
     for (auto p : const_view(img))
@@ -16,6 +17,12 @@ void PrintTo(const Nebula::RawImage& img, ::std::ostream* os)
         *os << " )";
     }
     *os << " ]";
+}
+
+template <typename T>
+inline void PrintTo(const point2<T>& p, ::std::ostream* os)
+{
+    *os << "(" << p.x << ", " << p.y << ")";
 }
 
 }

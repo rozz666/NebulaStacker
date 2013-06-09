@@ -22,10 +22,10 @@ private:
     typedef boost::uniform_int<Accumulator> Distribution;
     boost::mt19937 rng;
     unsigned frameCount;
-    RawImage frame;
+    RawImages inputFrames;
     Accumulator noiseAmplitude;
 
-    RawImage generateNoisyFrame();
+    RawImage generateNoisyFrame(const RawImage& inputFrame);
     RawPixel addNoise(RawPixel p, const Distribution& dist);
 };
 

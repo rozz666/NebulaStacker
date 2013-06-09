@@ -1,4 +1,5 @@
 #include <Nebula/NoiseFrameGenerator.hpp>
+#include <boost/ref.hpp>
 #include <functional>
 
 namespace Nebula
@@ -12,12 +13,13 @@ NoiseFrameGenerator& NoiseFrameGenerator::frames(unsigned count)
 
 NoiseFrameGenerator& NoiseFrameGenerator::from(RawImage frame)
 {
-    this->frame = frame;
+    inputFrames = { frame };
     return *this;
 }
 
 NoiseFrameGenerator& NoiseFrameGenerator::from(const RawImages& frames)
 {
+    inputFrames = frames;
     return *this;
 }
 
@@ -44,12 +46,12 @@ RawPixel NoiseFrameGenerator::addNoise(RawPixel p, const Distribution& dist)
 }
 
 
-RawImage NoiseFrameGenerator::generateNoisyFrame()
+RawImage NoiseFrameGenerator::generateNoisyFrame(const RawImage& inputFrame)
 {
     using std::placeholders::_1;
     boost::uniform_int<Accumulator> dist(-noiseAmplitude, noiseAmplitude);
-    RawImage noisyFrame(frame.dimensions());
-    transform_pixels(const_view(frame), view(noisyFrame), std::bind(&NoiseFrameGenerator::addNoise, this, _1, dist));
+    RawImage noisyFrame(inputFrame.dimensions());
+    transform_pixels(const_view(inputFrame), view(noisyFrame), std::bind(&NoiseFrameGenerator::addNoise, this, _1, dist));
     return noisyFrame;
 }
 
@@ -57,7 +59,8 @@ RawImages NoiseFrameGenerator::build()
 {
     RawImages frames;
     frames.reserve(frameCount);
-    std::generate_n(std::back_inserter(frames), frameCount, std::bind(&NoiseFrameGenerator::generateNoisyFrame, this));
+    for (auto inputFrame : inputFrames)
+        std::generate_n(std::back_inserter(frames), frameCount, [&] { return generateNoisyFrame(inputFrame); });
     return frames;
 }
 

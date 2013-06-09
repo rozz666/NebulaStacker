@@ -3,6 +3,7 @@
 #include <Nebula/GilAlgorithm.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/range.hpp>
+#include <Nebula/RawImagePrinter.hpp>
 
 namespace Nebula
 {
