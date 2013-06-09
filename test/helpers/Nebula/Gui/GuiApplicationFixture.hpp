@@ -12,6 +12,7 @@ public:
     void assertActionDisabled(std::string text);
     void open();
     void assertClosed();
+    void listBoxContains(std::string name, Strings items);
 private:
     MainWindow window;
 

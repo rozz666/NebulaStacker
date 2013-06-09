@@ -2,6 +2,7 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
+#include <QListWidget>
 #include <Nebula/Stacker.hpp>
 
 namespace Nebula
@@ -20,8 +21,10 @@ private slots:
 private:
     QStringList frameFiles;
     QAction *stackFramesAction;
+    QListWidget *lightFrameList;
 
     QAction* addMenuAction(QMenu* menu, const QString& title, const char* member);
+    void fillLightFrameList();
 };
 
 }

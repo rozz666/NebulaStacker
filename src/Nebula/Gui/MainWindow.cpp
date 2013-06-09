@@ -1,6 +1,7 @@
 #include <Nebula/Gui/MainWindow.hpp>
 #include <QAction>
 #include <QMenuBar>
+#include <QListWidget>
 #include <Nebula/Gui/QFileDialog.hpp>
 #include <Nebula/StackerFactory.hpp>
 #include <Nebula/Gui/toStrings.hpp>
@@ -18,6 +19,9 @@ MainWindow::MainWindow()
     stackFramesAction->setEnabled(false);
     file->addSeparator();
     addMenuAction(file, "Quit", SLOT(close()));
+
+    lightFrameList = new QListWidget(this);
+    lightFrameList->setObjectName("lightFrameList");
 }
 
 void MainWindow::openLightFrames()
@@ -25,6 +29,7 @@ void MainWindow::openLightFrames()
     frameFiles = QFileDialog::getOpenFileNames(this, "Open light frames", "", "16-bit TIFF images (*.tif *.tiff))");
     if (frameFiles.empty())
         return;
+    fillLightFrameList();
     stackFramesAction->setEnabled(true);
 }
 
@@ -44,6 +49,12 @@ QAction* MainWindow::addMenuAction(QMenu* menu, const QString& title, const char
     connect(action, SIGNAL(triggered()), member);
     menu->addAction(action);
     return action;
+}
+
+void MainWindow::fillLightFrameList()
+{
+    for (auto f : frameFiles)
+        lightFrameList->addItem(f);
 }
 
 

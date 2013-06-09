@@ -65,4 +65,15 @@ TEST_F(MainWindowTest, stacking_stays_disabled_after_canceling_adding_frames)
     application.assertActionDisabled(STACK_FRAMES);
 }
 
+TEST_F(MainWindowTest, opened_frames_are_listed)
+{
+    auto FRAMES = environment.generateLightFrames(3);
+
+    environment.expectOpenFiles(FRAMES);
+
+    application.triggerAction(OPEN_LIGHT_FRAMES);
+
+    application.listBoxContains("lightFrameList", FRAMES);
+}
+
 }
