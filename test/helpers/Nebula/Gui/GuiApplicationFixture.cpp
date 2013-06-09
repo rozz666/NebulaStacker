@@ -7,14 +7,14 @@
 namespace Nebula
 {
 
-void GuiApplicationFixture::triggerAction(QString text)
+void GuiApplicationFixture::triggerAction(std::string text)
 {
     auto action = getAction(text);
     ASSERT_TRUE(action->isEnabled());
     action->trigger();
 }
 
-void GuiApplicationFixture::assertActionDisabled(QString text)
+void GuiApplicationFixture::assertActionDisabled(std::string text)
 {
     auto action = getAction(text);
     ASSERT_FALSE(action->isEnabled());
@@ -30,10 +30,10 @@ void GuiApplicationFixture::assertClosed()
     ASSERT_FALSE(window.isVisible());
 }
 
-CheckedPtr<QAction> GuiApplicationFixture::getAction(QString text)
+CheckedPtr<QAction> GuiApplicationFixture::getAction(std::string text)
 {
     CheckedPtr<QAction> action;
-    getAction(text, action);
+    getAction(QString::fromUtf8(text.c_str()), action);
     return action;
 }
 

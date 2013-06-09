@@ -8,14 +8,14 @@ namespace Nebula {
 class GuiApplicationFixture
 {
 public:
-    void triggerAction(QString text);
-    void assertActionDisabled(QString text);
+    void triggerAction(std::string text);
+    void assertActionDisabled(std::string text);
     void open();
     void assertClosed();
 private:
     MainWindow window;
 
-    CheckedPtr<QAction> getAction(QString text);
+    CheckedPtr<QAction> getAction(std::string text);
     void getAction(QString text, CheckedPtr<QAction>& action);
 };
 
