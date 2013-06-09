@@ -1,6 +1,6 @@
 #ifndef FRAMECOMBINER_HPP
 #define FRAMECOMBINER_HPP
-#include "Images.hpp"
+#include <Nebula/Images.hpp>
 #include <boost/shared_ptr.hpp>
 
 namespace Nebula

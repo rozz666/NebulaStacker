@@ -1,6 +1,6 @@
 #ifndef FRAMECOMBINERFACTORY_HPP
 #define FRAMECOMBINERFACTORY_HPP
-#include "FrameCombiner.hpp"
+#include <Nebula/FrameCombiner.hpp>
 
 namespace Nebula
 {

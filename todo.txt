@@ -1,5 +1,4 @@
 * fix header guards
-* fix includes
 * GUI frame preview
 * GUI output preview
 * stacking moved point stars
