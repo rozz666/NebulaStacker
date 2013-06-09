@@ -8,6 +8,7 @@ class GuiApplicationFixture
 {
 public:
     void triggerAction(QString text);
+    void assertActionDisabled(QString text);
     void open();
     void assertClosed();
 private:

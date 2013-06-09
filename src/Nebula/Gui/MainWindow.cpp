@@ -14,7 +14,8 @@ MainWindow::MainWindow()
 
     QMenu *file = menuBar()->addMenu("File");
     addMenuAction(file, "Open light frames...", SLOT(openLightFrames()));
-    addMenuAction(file, "Stack...", SLOT(stackFrames()));
+    stackFramesAction = addMenuAction(file, "Stack...", SLOT(stackFrames()));
+    stackFramesAction->setEnabled(false);
     file->addSeparator();
     addMenuAction(file, "Quit", SLOT(close()));
 }
@@ -22,6 +23,9 @@ MainWindow::MainWindow()
 void MainWindow::openLightFrames()
 {
     frameFiles = QFileDialog::getOpenFileNames(this, "Open light frames", "", "16-bit TIFF images (*.tif *.tiff))");
+    if (frameFiles.empty())
+        return;
+    stackFramesAction->setEnabled(true);
 }
 
 void MainWindow::stackFrames()
@@ -34,11 +38,12 @@ void MainWindow::stackFrames()
     stacker->stack(outputFile.toStdString());
 }
 
-void MainWindow::addMenuAction(QMenu* menu, const QString& title, const char* member)
+QAction* MainWindow::addMenuAction(QMenu* menu, const QString& title, const char* member)
 {
     auto action = new QAction(title, this);
     connect(action, SIGNAL(triggered()), member);
     menu->addAction(action);
+    return action;
 }
 
 

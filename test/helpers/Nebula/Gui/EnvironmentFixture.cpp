@@ -28,6 +28,11 @@ void EnvironmentFixture::expectOpenFiles(Strings files)
         .WillOnce(Return(list));
 }
 
+void EnvironmentFixture::expectOpenFilesAndCancel()
+{
+    expectOpenFiles(Strings());
+}
+
 void EnvironmentFixture::expectSaveFile(std::string file)
 {
     EXPECT_CALL(QFileDialogMock::get(), getSaveFileName(_, _, _, _, _, _))

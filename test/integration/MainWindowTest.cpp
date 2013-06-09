@@ -21,13 +21,6 @@ TEST_F(MainWindowTest, quit)
     application.assertClosed();
 }
 
-TEST_F(MainWindowTest, add_frames)
-{
-    environment.expectOpenFiles();
-
-    application.triggerAction("Open light frames...");
-}
-
 TEST_F(MainWindowTest, stacking_frames)
 {
     auto FRAMES = environment.generateLightFrames(3);
@@ -54,6 +47,20 @@ TEST_F(MainWindowTest, cancel_stacking)
     environment.expectSaveFileAndCancel();
 
     application.triggerAction("Stack...");
+}
+
+TEST_F(MainWindowTest, stacking_is_disabled_after_startup)
+{
+    application.assertActionDisabled("Stack...");
+}
+
+TEST_F(MainWindowTest, stacking_stays_disabled_after_canceling_adding_frames)
+{
+    environment.expectOpenFilesAndCancel();
+
+    application.triggerAction("Open light frames...");
+
+    application.assertActionDisabled("Stack...");
 }
 
 }

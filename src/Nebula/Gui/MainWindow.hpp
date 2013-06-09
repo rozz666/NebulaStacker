@@ -19,8 +19,9 @@ private slots:
     
 private:
     QStringList frameFiles;
+    QAction *stackFramesAction;
 
-    void addMenuAction(QMenu* menu, const QString& title, const char* member);
+    QAction* addMenuAction(QMenu* menu, const QString& title, const char* member);
 };
 
 }

@@ -13,7 +13,8 @@ public:
     EnvironmentFixture();
     ~EnvironmentFixture();
 
-    void expectOpenFiles(Strings files = Strings());
+    void expectOpenFiles(Strings files);
+    void expectOpenFilesAndCancel();
     void expectSaveFile(std::string file);
     void expectSaveFileAndCancel();
     void assertFileExists(std::string file);
