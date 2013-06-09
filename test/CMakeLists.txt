@@ -16,6 +16,7 @@ add_executable(nebulastacker_test
     helpers/Nebula/Gui/GuiApplicationFixture.cpp
     helpers/Nebula/Gui/EnvironmentFixture.cpp
 
+    unit/Nebula/CheckedPtrTest.cpp
     unit/Nebula/NebulaStackerTest.cpp
     unit/Nebula/FrameAveragerTest.cpp
     unit/Nebula/GilAlgorithmTest.cpp

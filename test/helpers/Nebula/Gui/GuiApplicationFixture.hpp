@@ -1,6 +1,7 @@
 #ifndef NEBULA_GUIAPPLICATIONFIXTURE_HPP
 #define NEBULA_GUIAPPLICATIONFIXTURE_HPP
 #include <Nebula/Gui/MainWindow.hpp>
+#include <Nebula/CheckedPtr.hpp>
 
 namespace Nebula {
 
@@ -13,6 +14,9 @@ public:
     void assertClosed();
 private:
     MainWindow window;
+
+    CheckedPtr<QAction> getAction(QString text);
+    void getAction(QString text, CheckedPtr<QAction>& action);
 };
 
 }
