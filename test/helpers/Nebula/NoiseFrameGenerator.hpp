@@ -1,6 +1,7 @@
 #ifndef NEBULA_NOISEFRAMEGENERATOR_HPP
 #define NEBULA_NOISEFRAMEGENERATOR_HPP
 #include <Nebula/Images.hpp>
+#include <Nebula/Point.hpp>
 #include <boost/random/mersenne_twister.hpp>
 #include <boost/random/uniform_int.hpp>
 
@@ -13,6 +14,7 @@ public:
     NoiseFrameGenerator()
         : frameCount(1), noiseAmplitude(0) { }
     NoiseFrameGenerator& frames(unsigned count);
+    NoiseFrameGenerator& translatedFrames(Points offsets);
     NoiseFrameGenerator& from(RawImage frame);
     NoiseFrameGenerator& withAmplitude(Accumulator amplitude);
     RawImages build();

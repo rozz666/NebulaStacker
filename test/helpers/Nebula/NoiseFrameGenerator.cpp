@@ -10,6 +10,11 @@ NoiseFrameGenerator& NoiseFrameGenerator::frames(unsigned count)
     return *this;
 }
 
+NoiseFrameGenerator& NoiseFrameGenerator::translatedFrames(Points offsets)
+{
+    return *this;
+}
+
 NoiseFrameGenerator& NoiseFrameGenerator::from(RawImage frame)
 {
     this->frame = frame;
