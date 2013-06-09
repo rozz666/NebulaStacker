@@ -26,7 +26,7 @@ MainWindow::MainWindow()
 
 void MainWindow::openLightFrames()
 {
-    frameFiles = QFileDialog::getOpenFileNames(this, "Open light frames", "", "16-bit TIFF images (*.tif *.tiff))");
+    frameFiles = QFileDialog::getOpenFileNames(this, "Open light frames", "", "16-bit TIFF images (*.tif *.tiff)");
     if (frameFiles.empty())
         return;
     fillLightFrameList();
@@ -36,7 +36,7 @@ void MainWindow::openLightFrames()
 void MainWindow::stackFrames()
 {
     auto stacker = StackerFactory().createStacker();
-    QString outputFile = QFileDialog::getSaveFileName(this, "Save stacked image", "", "16-bit TIFF images (*.tif *.tiff))");
+    QString outputFile = QFileDialog::getSaveFileName(this, "Save stacked image", "", "16-bit TIFF images (*.tif *.tiff)");
     if (outputFile.isEmpty())
         return;
     stacker->setLightFrames(toStrings(frameFiles));
