@@ -1,5 +1,5 @@
-#ifndef RAWIMAGEPRINTER_HPP
-#define RAWIMAGEPRINTER_HPP
+#ifndef NEBULA_RAWIMAGEPRINTER_HPP
+#define NEBULA_RAWIMAGEPRINTER_HPP
 
 namespace boost
 {
@@ -21,4 +21,4 @@ void PrintTo(const Nebula::RawImage& img, ::std::ostream* os)
 }
 }
 
-#endif // RAWIMAGEPRINTER_HPP
+#endif // NEBULA_RAWIMAGEPRINTER_HPP

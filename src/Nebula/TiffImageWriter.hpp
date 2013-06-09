@@ -1,5 +1,5 @@
-#ifndef TIFFIMAGEWRITER_HPP
-#define TIFFIMAGEWRITER_HPP
+#ifndef NEBULA_TIFFIMAGEWRITER_HPP
+#define NEBULA_TIFFIMAGEWRITER_HPP
 #include <Nebula/ImageWriter.hpp>
 
 namespace Nebula
@@ -12,4 +12,4 @@ struct TiffImageWriter : public ImageWriter
 
 }
 
-#endif // TIFFIMAGEWRITER_HPP
+#endif // NEBULA_TIFFIMAGEWRITER_HPP

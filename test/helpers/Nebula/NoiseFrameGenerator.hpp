@@ -1,5 +1,5 @@
-#ifndef NOISEFRAMEGENERATOR_HPP
-#define NOISEFRAMEGENERATOR_HPP
+#ifndef NEBULA_NOISEFRAMEGENERATOR_HPP
+#define NEBULA_NOISEFRAMEGENERATOR_HPP
 #include <Nebula/Images.hpp>
 #include <boost/random/mersenne_twister.hpp>
 #include <boost/random/uniform_int.hpp>
@@ -29,4 +29,4 @@ private:
 
 }
 
-#endif // NOISEFRAMEGENERATOR_HPP
+#endif // NEBULA_NOISEFRAMEGENERATOR_HPP

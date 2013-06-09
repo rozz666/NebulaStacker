@@ -1,5 +1,5 @@
-#ifndef TIFFIMAGEREADER_HPP
-#define TIFFIMAGEREADER_HPP
+#ifndef NEBULA_TIFFIMAGEREADER_HPP
+#define NEBULA_TIFFIMAGEREADER_HPP
 #include <Nebula/ImageReader.hpp>
 
 namespace Nebula
@@ -12,4 +12,4 @@ struct TiffImageReader : public ImageReader
 
 }
 
-#endif // TIFFIMAGEREADER_HPP
+#endif // NEBULA_TIFFIMAGEREADER_HPP

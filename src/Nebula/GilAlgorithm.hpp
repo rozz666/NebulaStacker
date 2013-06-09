@@ -1,5 +1,5 @@
-#ifndef GILALGORITHM_HPP
-#define GILALGORITHM_HPP
+#ifndef NEBULA_GILALGORITHM_HPP
+#define NEBULA_GILALGORITHM_HPP
 #include <boost/gil/color_base_algorithm.hpp>
 #include <boost/gil/algorithm.hpp>
 #include <stdexcept>
@@ -33,4 +33,4 @@ Result for_each_channel_accumulate(const View1& view1, const View2& view2, Resul
 
 }
 
-#endif // GILALGORITHM_HPP
+#endif // NEBULA_GILALGORITHM_HPP

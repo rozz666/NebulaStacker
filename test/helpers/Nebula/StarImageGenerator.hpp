@@ -1,5 +1,5 @@
-#ifndef STARIMAGEGENERATOR_HPP
-#define STARIMAGEGENERATOR_HPP
+#ifndef NEBULA_STARIMAGEGENERATOR_HPP
+#define NEBULA_STARIMAGEGENERATOR_HPP
 
 #include <Nebula/Images.hpp>
 #include <Nebula/Point.hpp>
@@ -25,4 +25,4 @@ private:
 
 }
 
-#endif // STARIMAGEGENERATOR_HPP
+#endif // NEBULA_STARIMAGEGENERATOR_HPP

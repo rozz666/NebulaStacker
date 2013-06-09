@@ -1,5 +1,5 @@
-#ifndef COLORS_HPP
-#define COLORS_HPP
+#ifndef NEBULA_COLORS_HPP
+#define NEBULA_COLORS_HPP
 #include <boost/gil/typedefs.hpp>
 #include <boost/cstdint.hpp>
 
@@ -24,4 +24,4 @@ inline RawPixel luminance(boost::gil::channel_type<RawPixel>::type value) { retu
 
 }
 
-#endif // COLORS_HPP
+#endif // NEBULA_COLORS_HPP

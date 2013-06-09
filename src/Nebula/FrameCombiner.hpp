@@ -1,5 +1,5 @@
-#ifndef FRAMECOMBINER_HPP
-#define FRAMECOMBINER_HPP
+#ifndef NEBULA_FRAMECOMBINER_HPP
+#define NEBULA_FRAMECOMBINER_HPP
 #include <Nebula/Images.hpp>
 #include <boost/shared_ptr.hpp>
 
@@ -17,4 +17,4 @@ typedef boost::shared_ptr<FrameCombiner> FrameCombinerPtr;
 
 }
 
-#endif // FRAMECOMBINER_HPP
+#endif // NEBULA_FRAMECOMBINER_HPP

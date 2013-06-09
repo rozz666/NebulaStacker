@@ -1,5 +1,5 @@
-#ifndef IMAGEREADER_HPP
-#define IMAGEREADER_HPP
+#ifndef NEBULA_IMAGEREADER_HPP
+#define NEBULA_IMAGEREADER_HPP
 #include <Nebula/Images.hpp>
 
 namespace Nebula
@@ -13,4 +13,4 @@ struct ImageReader
 
 }
 
-#endif // IMAGEREADER_HPP
+#endif // NEBULA_IMAGEREADER_HPP

@@ -1,5 +1,5 @@
-#ifndef IMAGEREADERMOCK_HPP
-#define IMAGEREADERMOCK_HPP
+#ifndef NEBULA_IMAGEREADERMOCK_HPP
+#define NEBULA_IMAGEREADERMOCK_HPP
 #include <Nebula/ImageReader.hpp>
 #include <gmock/gmock.h>
 
@@ -13,4 +13,4 @@ struct ImageReaderMock : ImageReader
 
 }
 
-#endif // IMAGEREADERMOCK_HPP
+#endif // NEBULA_IMAGEREADERMOCK_HPP

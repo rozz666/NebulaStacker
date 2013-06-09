@@ -1,5 +1,5 @@
-#ifndef IMAGES_HPP
-#define IMAGES_HPP
+#ifndef NEBULA_IMAGES_HPP
+#define NEBULA_IMAGES_HPP
 
 #include <vector>
 #include <boost/gil/image.hpp>
@@ -15,4 +15,4 @@ typedef boost::gil::image<AccumPixel> AccumImage;
 
 }
 
-#endif // IMAGES_HPP
+#endif // NEBULA_IMAGES_HPP

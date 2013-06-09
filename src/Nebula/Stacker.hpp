@@ -1,5 +1,5 @@
-#ifndef NEBULASTACKER_HPP
-#define NEBULASTACKER_HPP
+#ifndef NEBULA_STACKER_HPP
+#define NEBULA_STACKER_HPP
 #include <Nebula/Strings.hpp>
 #include <Nebula/ImageReader.hpp>
 #include <Nebula/ImageWriter.hpp>
@@ -26,4 +26,4 @@ typedef boost::shared_ptr<Stacker> StackerPtr;
 
 }
 
-#endif // NEBULASTACKER_HPP
+#endif // NEBULA_STACKER_HPP

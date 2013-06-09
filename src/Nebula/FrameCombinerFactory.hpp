@@ -1,5 +1,5 @@
-#ifndef FRAMECOMBINERFACTORY_HPP
-#define FRAMECOMBINERFACTORY_HPP
+#ifndef NEBULA_FRAMECOMBINERFACTORY_HPP
+#define NEBULA_FRAMECOMBINERFACTORY_HPP
 #include <Nebula/FrameCombiner.hpp>
 
 namespace Nebula
@@ -13,4 +13,4 @@ struct FrameCombinerFactory
 
 }
 
-#endif // FRAMECOMBINERFACTORY_HPP
+#endif // NEBULA_FRAMECOMBINERFACTORY_HPP

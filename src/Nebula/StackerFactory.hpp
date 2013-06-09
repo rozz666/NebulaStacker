@@ -1,5 +1,5 @@
-#ifndef NEBULASTACKERFACTORY_HPP
-#define NEBULASTACKERFACTORY_HPP
+#ifndef NEBULA_STACKERFACTORY_HPP
+#define NEBULA_STACKERFACTORY_HPP
 #include <Nebula/Stacker.hpp>
 
 namespace Nebula
@@ -12,4 +12,4 @@ struct StackerFactory
 
 }
 
-#endif // NEBULASTACKERFACTORY_HPP
+#endif // NEBULA_STACKERFACTORY_HPP

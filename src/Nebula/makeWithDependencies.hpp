@@ -1,5 +1,5 @@
-#ifndef MAKEWITHDEPENDENCIES_HPP
-#define MAKEWITHDEPENDENCIES_HPP
+#ifndef NEBULA_MAKEWITHDEPENDENCIES_HPP
+#define NEBULA_MAKEWITHDEPENDENCIES_HPP
 
 #include <boost/make_shared.hpp>
 
@@ -15,4 +15,4 @@ boost::shared_ptr<Object> makeWithDependencies(Object Container::*object)
 
 }
 
-#endif // MAKEWITHDEPENDENCIES_HPP
+#endif // NEBULA_MAKEWITHDEPENDENCIES_HPP

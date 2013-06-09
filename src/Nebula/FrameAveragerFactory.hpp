@@ -1,5 +1,5 @@
-#ifndef FRAMEAVERAGERFACTORY_HPP
-#define FRAMEAVERAGERFACTORY_HPP
+#ifndef NEBULA_FRAMEAVERAGERFACTORY_HPP
+#define NEBULA_FRAMEAVERAGERFACTORY_HPP
 #include <Nebula/FrameCombinerFactory.hpp>
 
 namespace Nebula
@@ -12,4 +12,4 @@ struct FrameAveragerFactory : FrameCombinerFactory
 
 }
 
-#endif // FRAMEAVERAGERFACTORY_HPP
+#endif // NEBULA_FRAMEAVERAGERFACTORY_HPP

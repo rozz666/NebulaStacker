@@ -1,5 +1,5 @@
-#ifndef STRINGS_HPP
-#define STRINGS_HPP
+#ifndef NEBULA_STRINGS_HPP
+#define NEBULA_STRINGS_HPP
 #include <vector>
 #include <string>
 
@@ -10,4 +10,4 @@ typedef std::vector<std::string> Strings;
 
 }
 
-#endif // STRINGS_HPP
+#endif // NEBULA_STRINGS_HPP

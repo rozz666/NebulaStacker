@@ -1,5 +1,5 @@
-#ifndef IMAGEWRITERMOCK_HPP
-#define IMAGEWRITERMOCK_HPP
+#ifndef NEBULA_IMAGEWRITERMOCK_HPP
+#define NEBULA_IMAGEWRITERMOCK_HPP
 #include <Nebula/ImageWriter.hpp>
 #include <gmock/gmock.h>
 
@@ -13,4 +13,4 @@ struct ImageWriterMock : ImageWriter
 
 }
 
-#endif // IMAGEWRITERMOCK_HPP
+#endif // NEBULA_IMAGEWRITERMOCK_HPP

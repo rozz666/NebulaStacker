@@ -1,5 +1,5 @@
-#ifndef FRAMEAVERAGER_HPP
-#define FRAMEAVERAGER_HPP
+#ifndef NEBULA_FRAMEAVERAGER_HPP
+#define NEBULA_FRAMEAVERAGER_HPP
 #include <Nebula/FrameCombiner.hpp>
 
 namespace Nebula
@@ -17,4 +17,4 @@ private:
 
 }
 
-#endif // FRAMEAVERAGER_HPP
+#endif // NEBULA_FRAMEAVERAGER_HPP

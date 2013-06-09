@@ -1,5 +1,5 @@
-#ifndef APPLICATIONFIXTURE_HPP
-#define APPLICATIONFIXTURE_HPP
+#ifndef NEBULA_APPLICATIONFIXTURE_HPP
+#define NEBULA_APPLICATIONFIXTURE_HPP
 #include <Nebula/Stacker.hpp>
 #include <Nebula/AutoremoveFiles.hpp>
 
@@ -18,4 +18,4 @@ private:
 
 }
 
-#endif // APPLICATIONFIXTURE_HPP
+#endif // NEBULA_APPLICATIONFIXTURE_HPP

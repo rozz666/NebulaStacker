@@ -1,5 +1,5 @@
-#ifndef FRAMECOMBINERMOCK_HPP
-#define FRAMECOMBINERMOCK_HPP
+#ifndef NEBULA_FRAMECOMBINERMOCK_HPP
+#define NEBULA_FRAMECOMBINERMOCK_HPP
 
 #include <Nebula/FrameCombiner.hpp>
 #include <gmock/gmock.h>
@@ -18,4 +18,4 @@ typedef boost::shared_ptr<FrameCombinerMock> FrameCombinerMockPtr;
 
 }
 
-#endif // FRAMECOMBINERMOCK_HPP
+#endif // NEBULA_FRAMECOMBINERMOCK_HPP

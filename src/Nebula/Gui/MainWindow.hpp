@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_HPP
-#define MAINWINDOW_HPP
+#ifndef NEBULA_MAINWINDOW_HPP
+#define NEBULA_MAINWINDOW_HPP
 
 #include <QMainWindow>
 #include <QListWidget>
@@ -29,4 +29,4 @@ private:
 
 }
 
-#endif // MAINWINDOW_HPP
+#endif // NEBULA_MAINWINDOW_HPP

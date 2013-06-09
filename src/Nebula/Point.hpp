@@ -1,5 +1,5 @@
-#ifndef POINT_HPP
-#define POINT_HPP
+#ifndef NEBULA_POINT_HPP
+#define NEBULA_POINT_HPP
 
 #include <vector>
 
@@ -18,4 +18,4 @@ typedef std::vector<Point> Points;
 
 }
 
-#endif // POINT_HPP
+#endif // NEBULA_POINT_HPP

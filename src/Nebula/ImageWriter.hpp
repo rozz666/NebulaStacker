@@ -1,5 +1,5 @@
-#ifndef IMAGEWRITER_HPP
-#define IMAGEWRITER_HPP
+#ifndef NEBULA_IMAGEWRITER_HPP
+#define NEBULA_IMAGEWRITER_HPP
 #include <string>
 #include <Nebula/Images.hpp>
 
@@ -14,4 +14,4 @@ struct ImageWriter
 
 }
 
-#endif // IMAGEWRITER_HPP
+#endif // NEBULA_IMAGEWRITER_HPP

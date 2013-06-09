@@ -1,5 +1,5 @@
-#ifndef AUTOREMOVEFILES_HPP
-#define AUTOREMOVEFILES_HPP
+#ifndef NEBULA_AUTOREMOVEFILES_HPP
+#define NEBULA_AUTOREMOVEFILES_HPP
 #include <Nebula/Strings.hpp>
 
 namespace Nebula
@@ -16,4 +16,4 @@ private:
 
 }
 
-#endif // AUTOREMOVEFILES_HPP
+#endif // NEBULA_AUTOREMOVEFILES_HPP

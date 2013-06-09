@@ -1,5 +1,5 @@
-#ifndef FRAMEFILES_HPP
-#define FRAMEFILES_HPP
+#ifndef NEBULA_FRAMEFILES_HPP
+#define NEBULA_FRAMEFILES_HPP
 #include <Nebula/AutoremoveFiles.hpp>
 #include <Nebula/Images.hpp>
 #include <Nebula/TiffImageReader.hpp>
@@ -31,4 +31,4 @@ private:
 
 }
 
-#endif // FRAMEFILES_HPP
+#endif // NEBULA_FRAMEFILES_HPP
