@@ -3,6 +3,7 @@
 #include <Nebula/FrameFiles.hpp>
 #include <Nebula/StarImageGenerator.hpp>
 #include <Nebula/NoiseFrameGenerator.hpp>
+#include <Nebula/translatedFrames.hpp>
 
 namespace Nebula
 {
@@ -56,7 +57,7 @@ TEST_F(ModuleTest, stack_many_frames_to_reduce_noise)
 TEST_F(ModuleTest, DISABLED_stack_moved_frames)
 {
     auto STANDARD_FRAME = frameWithStarsAndBackgroundLuminance(16);
-    auto FRAMES = genNoise.translatedFrames({
+    auto TRANSLATED_FRAMES = translatedFrames(STANDARD_FRAME, {
         {  -9,   5 }, {  14,   7 }, { -16,   3 }, {  -8,   5 },
         {  11,  -8 }, { -12, -10 }, {   3, -11 }, {   1, -14 },
         {  11,   7 }, {  12,   4 }, {   4,  -6 }, { -13, -10 },
@@ -65,7 +66,8 @@ TEST_F(ModuleTest, DISABLED_stack_moved_frames)
         {  12,  12 }, {  16,  -2 }, {  10,   2 }, {   4, -13 },
         { -10,  -4 }, {  16,   9 }, {  -5,   8 }, {   6,  13 },
         {   0,   3 }, {  -2,  -2 }, {   5,   3 }, {  -1,   5 }
-    }).from(STANDARD_FRAME).withAmplitude(8).build();
+    });
+    auto FRAMES = genNoise.from(TRANSLATED_FRAMES).withAmplitude(8).build();
     auto FRAME_LIST = frameFiles.writeFrames(FRAMES);
 
     application.stack(FRAME_LIST, OUTPUT_IMAGE);

@@ -14,8 +14,8 @@ public:
     NoiseFrameGenerator()
         : frameCount(1), noiseAmplitude(0) { }
     NoiseFrameGenerator& frames(unsigned count);
-    NoiseFrameGenerator& translatedFrames(Points offsets);
     NoiseFrameGenerator& from(RawImage frame);
+    NoiseFrameGenerator& from(const RawImages& frames);
     NoiseFrameGenerator& withAmplitude(Accumulator amplitude);
     RawImages build();
 private:

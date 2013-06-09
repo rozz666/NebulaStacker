@@ -8,6 +8,7 @@ add_library(nebulastackerguidialogsmock
     helpers/Nebula/Gui/QFileDialogMock.cpp)
 
 add_executable(nebulastacker_test
+    helpers/Nebula/translatedFrames.cpp
     helpers/Nebula/NoiseFrameGenerator.cpp
     helpers/Nebula/AutoremoveFiles.cpp
     helpers/Nebula/StarImageGenerator.cpp
