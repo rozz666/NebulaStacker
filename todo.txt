@@ -1,6 +1,5 @@
-* namespaces
-* GUI loading frames 
-* GUI saving output
+* fix header guards
+* fix includes
 * GUI frame preview
 * GUI output preview
 * stacking moved point stars
