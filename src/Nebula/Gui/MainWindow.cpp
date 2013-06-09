@@ -12,19 +12,11 @@ MainWindow::MainWindow()
 {
     setWindowTitle("NebulaStacker");
 
-    auto openLightFrames = new QAction("Open light frames...", this);
-    auto stack = new QAction("Stack...", this);
-    auto quit = new QAction("Quit", this);
-
-    connect(openLightFrames, SIGNAL(triggered()), SLOT(openLightFrames()));
-    connect(stack, SIGNAL(triggered()), SLOT(stackFrames()));
-    connect(quit, SIGNAL(triggered()), SLOT(close()));
-
-    auto file = menuBar()->addMenu("File");
-    file->addAction(openLightFrames);
-    file->addAction(stack);
+    QMenu *file = menuBar()->addMenu("File");
+    addMenuAction(file, "Open light frames...", SLOT(openLightFrames()));
+    addMenuAction(file, "Stack...", SLOT(stackFrames()));
     file->addSeparator();
-    file->addAction(quit);
+    addMenuAction(file, "Quit", SLOT(close()));
 }
 
 void MainWindow::openLightFrames()
@@ -40,6 +32,13 @@ void MainWindow::stackFrames()
         return;
     stacker->setLightFrames(toStrings(frameFiles));
     stacker->stack(outputFile.toStdString());
+}
+
+void MainWindow::addMenuAction(QMenu* menu, const QString& title, const char* member)
+{
+    auto action = new QAction(title, this);
+    connect(action, SIGNAL(triggered()), member);
+    menu->addAction(action);
 }
 
 
