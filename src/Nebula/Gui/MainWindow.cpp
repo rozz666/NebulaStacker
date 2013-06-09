@@ -36,6 +36,8 @@ void MainWindow::stackFrames()
 {
     auto stacker = StackerFactory().createStacker();
     QString outputFile = QFileDialog::getSaveFileName(this, "Save stacked image", "", "16-bit TIFF images (*.tif *.tiff))");
+    if (outputFile.isEmpty())
+        return;
     stacker->setLightFrames(toStrings(frameFiles));
     stacker->stack(outputFile.toStdString());
 }

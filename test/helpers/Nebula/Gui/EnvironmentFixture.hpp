@@ -15,6 +15,7 @@ public:
 
     void expectOpenFiles(Strings files = Strings());
     void expectSaveFile(std::string file);
+    void expectSaveFileAndCancel();
     void assertFileExists(std::string file);
     Strings generateLightFrames(unsigned count);
 

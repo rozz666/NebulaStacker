@@ -43,4 +43,17 @@ TEST_F(MainWindowTest, stacking_frames)
     environment.assertFileExists(OUTPUT_FILE);
 }
 
+TEST_F(MainWindowTest, cancel_stacking)
+{
+    auto FRAMES = environment.generateLightFrames(3);
+
+    environment.expectOpenFiles(FRAMES);
+
+    application.triggerAction("Open light frames...");
+
+    environment.expectSaveFileAndCancel();
+
+    application.triggerAction("Stack...");
+}
+
 }

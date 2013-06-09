@@ -34,6 +34,11 @@ void EnvironmentFixture::expectSaveFile(std::string file)
         .WillOnce(Return(QString::fromUtf8(file.c_str())));
 }
 
+void EnvironmentFixture::expectSaveFileAndCancel()
+{
+    expectSaveFile("");
+}
+
 void EnvironmentFixture::assertFileExists(std::string file)
 {
     ASSERT_TRUE(QFile(QString::fromUtf8(file.c_str())).exists()) << "File [" << file << "] does not exist";
